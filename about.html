@@ -496,6 +496,8 @@
     for (let i = 0; i < idx; i++) {
       document.getElementById('step-' + modules[i]).classList.add('done');
     }
+
+    document.getElementById(id).scrollIntoView({behavior: 'smooth', block: 'start'});
   }
 
   function answer(btn, qName, isCorrect) {
