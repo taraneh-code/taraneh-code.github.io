@@ -1,3 +1,6 @@
+
+
+Index · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,9 +21,9 @@
     --muted: #8c7d72;
     --border: #eee3d8;
   }
-
+ 
   * { box-sizing: border-box; }
-
+ 
   html, body {
     margin: 0;
     height: 100%;
@@ -29,9 +32,9 @@
     color: var(--text);
     -webkit-font-smoothing: antialiased;
   }
-
+ 
   a { text-decoration: none; color: inherit; }
-
+ 
   /* Nav */
   nav {
     display: flex;
@@ -72,12 +75,12 @@
     border-radius: 2px;
   }
   nav .links a:hover { color: var(--maroon); }
-
+ 
   @media (max-width: 640px) {
     nav { padding: 24px 24px; flex-direction: column; gap: 18px; align-items: flex-start; }
     nav .links { gap: 22px; }
   }
-
+ 
   /* Hero */
   main.hero {
     min-height: calc(100vh - 96px);
@@ -146,12 +149,12 @@
     border: 1.5px solid var(--border);
   }
   .btn.secondary:hover { background: var(--cream); }
-
+ 
   @media (max-width: 640px) {
     main.hero { padding: 0 24px 60px; min-height: calc(100vh - 140px); }
     main.hero h1 { font-size: 2.3em; }
   }
-
+ 
   footer {
     text-align: center;
     color: var(--muted);
@@ -162,10 +165,10 @@
 </style>
 </head>
 <body>
-
+ 
 <nav>
   <div style="display:flex; align-items:center; gap:10px;">
-    <img src="assets/logo.png" alt="Tara Bond logo" style="height:36px; width:auto; display:block;">
+    <img src="logo.png" alt="Tara Bond logo" style="height:36px; width:auto; display:block;">
     <div class="name">Tara Bond</div>
   </div>
   <div class="links">
@@ -174,7 +177,7 @@
     <a href="portfolio.html">Portfolio</a>
   </div>
 </nav>
-
+ 
 <main class="hero">
   <span class="eyebrow">Learning &amp; Development Leader</span>
   <h1>I turn complexity into <span>learning that sticks.</span></h1>
@@ -185,10 +188,12 @@
     <a href="about.html" class="btn secondary">Take a Course About Me →</a>
   </div>
 </main>
-
+ 
 <footer>
   Built from scratch with HTML &amp; CSS &nbsp;·&nbsp; <a href="https://github.com/taraneh-code" target="_blank">View source on GitHub</a>
 </footer>
-
+ 
 </body>
 </html>
+ 
+Copied!
