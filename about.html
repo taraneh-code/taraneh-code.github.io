@@ -356,7 +356,7 @@
 
   <div class="kicker">TB-101 · Self-Paced Course</div>
   <h1 class="big">All About<br>Tara Bond.</h1>
-  <p class="intro">An interactive course on the learning experience designer who built this page — taught, naturally, as an eLearning module.</p>
+  <p class="intro">An interactive course on the learning experience designer who built this page, taught naturally as an eLearning module.</p>
 
   <div class="tracker">
     <div class="step active" id="step-m1" onclick="goTo('m1')">
@@ -402,8 +402,8 @@
 
   <div class="panel" id="m2">
     <h2>Origin Story</h2>
-    <p>Tara didn't start in a classroom — she started on a restaurant floor. About six years in hospitality and restaurant management taught her how to train people fast, under pressure, with zero patience for boring onboarding.</p>
-    <p>That instinct carried into 10+ years of formal, corporate L&amp;D work: building the inside sales training function from scratch at Redfin, while also supporting leadership training there. From there, she moved into leading complex technical training at Visa within the Professional Services org, partnering closely with the risk and identity teams, and driving AI training and adoption across roles. The throughline is consistent — bring order and clarity to complexity, and make learning feel useful instead of obligatory.</p>
+    <p>Tara didn't start in a classroom. She started on a restaurant floor. About six years in hospitality and restaurant management taught her how to train people fast, under pressure, with zero patience for boring onboarding.</p>
+    <p>That instinct carried into 10+ years of formal, corporate L&amp;D work: building the inside sales training function from scratch at Redfin, while also supporting leadership training there. From there, she moved into leading complex technical training at Visa within the Professional Services org, partnering closely with the risk and identity teams, and driving AI training and adoption across roles. The throughline is consistent: bring order and clarity to complexity, and make learning feel useful instead of obligatory.</p>
     <div class="panel-nav">
       <button class="btn" onclick="goTo('m1')">← Back</button>
       <button class="btn fill" onclick="goTo('m3')">Next Module →</button>
@@ -466,7 +466,7 @@
       <p class="eyebrow">Certificate of Completion</p>
       <h2 style="margin-bottom:14px;">You now understand Tara Bond.</h2>
       <p>Awarded for completing TB-101 with full curiosity and minimal skepticism.</p>
-      <p>Let's actually connect — find her on <a href="#" style="color:var(--maroon); font-weight:700;">LinkedIn</a>, or view her <a href="portfolio.html" style="color:var(--maroon); font-weight:700;">Portfolio →</a></p>
+      <p>Let's actually connect. Find her on <a href="#" style="color:var(--maroon); font-weight:700;">LinkedIn</a>, or view her <a href="portfolio.html" style="color:var(--maroon); font-weight:700;">Portfolio →</a></p>
     </div>
     <div class="panel-nav">
       <button class="btn" onclick="goTo('m1')">↺ Restart Course</button>
@@ -496,7 +496,6 @@
     for (let i = 0; i < idx; i++) {
       document.getElementById('step-' + modules[i]).classList.add('done');
     }
-    window.scrollTo({top: 0, behavior:'smooth'});
   }
 
   function answer(btn, qName, isCorrect) {
