@@ -484,7 +484,7 @@
   const modules = ['m1','m2','m3','m4','m5'];
   const quizAnswers = {};
 
-  function goTo(id) {
+  function goTo(id, skipScroll) {
     modules.forEach(m => {
       document.getElementById(m).classList.remove('active');
       document.getElementById('step-' + m).classList.remove('active');
@@ -497,7 +497,9 @@
       document.getElementById('step-' + modules[i]).classList.add('done');
     }
 
-    document.getElementById(id).scrollIntoView({behavior: 'smooth', block: 'start'});
+    if (!skipScroll) {
+      document.getElementById(id).scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
   }
 
   function answer(btn, qName, isCorrect) {
@@ -510,7 +512,7 @@
     }
   }
 
-  goTo('m1');
+  goTo('m1', true);
 </script>
 
 </div>
