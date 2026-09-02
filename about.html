@@ -119,9 +119,19 @@
     flex: 1;
     padding-top: 16px;
     cursor: pointer;
+    border: none;
     border-top: 2px solid transparent;
     margin-top: -2px;
     transition: border-color 0.2s;
+    background: none;
+    font-family: 'Schibsted Grotesk', Arial, sans-serif;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+  }
+  .step:focus-visible {
+    outline: 2px solid var(--tan);
+    outline-offset: 3px;
   }
   .step.active, .step.done { border-top-color: var(--tan); }
   .step .step-num {
@@ -136,6 +146,7 @@
     font-weight: 600;
     margin-top: 4px;
     color: var(--muted);
+    display: block;
   }
   .step.active .step-label { color: var(--maroon); }
   @media (max-width: 640px) {
@@ -409,26 +420,26 @@
   <p class="intro">An interactive course on the learning experience designer who built this page, taught naturally as an eLearning module.</p>
 
   <div class="tracker">
-    <div class="step active" id="step-m1" onclick="goTo('m1')">
-      <div class="step-num">01</div>
-      <div class="step-label">Objectives</div>
-    </div>
-    <div class="step" id="step-m2" onclick="goTo('m2')">
-      <div class="step-num">02</div>
-      <div class="step-label">Origin Story</div>
-    </div>
-    <div class="step" id="step-m3" onclick="goTo('m3')">
-      <div class="step-num">03</div>
-      <div class="step-label">Strengths</div>
-    </div>
-    <div class="step" id="step-m4" onclick="goTo('m4')">
-      <div class="step-num">04</div>
-      <div class="step-label">Quiz</div>
-    </div>
-    <div class="step" id="step-m5" onclick="goTo('m5')">
-      <div class="step-num">05</div>
-      <div class="step-label">Certificate</div>
-    </div>
+    <button class="step active" id="step-m1" onclick="goTo('m1')" aria-label="Module 1: Learning Objectives">
+      <span class="step-num">01</span>
+      <span class="step-label">Objectives</span>
+    </button>
+    <button class="step" id="step-m2" onclick="goTo('m2')" aria-label="Module 2: Origin Story">
+      <span class="step-num">02</span>
+      <span class="step-label">Origin Story</span>
+    </button>
+    <button class="step" id="step-m3" onclick="goTo('m3')" aria-label="Module 3: Core Strengths">
+      <span class="step-num">03</span>
+      <span class="step-label">Strengths</span>
+    </button>
+    <button class="step" id="step-m4" onclick="goTo('m4')" aria-label="Module 4: Knowledge Check">
+      <span class="step-num">04</span>
+      <span class="step-label">Quiz</span>
+    </button>
+    <button class="step" id="step-m5" onclick="goTo('m5')" aria-label="Module 5: Certificate">
+      <span class="step-num">05</span>
+      <span class="step-label">Certificate</span>
+    </button>
   </div>
 
   <div class="panel active" id="m1">
