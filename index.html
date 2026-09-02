@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="logo.png">
+<meta name="theme-color" content="#593232">
 <title>Tara Bond</title>
 <meta property="og:title" content="Tara Bond — Learning & Development Leader">
 <meta property="og:description" content="Portfolio site for Tara Bond, an L&D leader specializing in training management, enablement, and instructional design. Built from scratch with HTML and CSS.">
@@ -15,7 +17,7 @@
 <meta name="twitter:image" content="https://taraneh-code.github.io/tara-headshot.jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 <style>
   :root {
     --maroon: #593232;
@@ -42,6 +44,51 @@
 
   a { text-decoration: none; color: inherit; }
 
+  ::selection {
+    background: var(--blush);
+    color: var(--maroon);
+  }
+
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: var(--tan); border-radius: 10px; border: 2px solid var(--cream); }
+  * { scrollbar-color: var(--tan) var(--cream); scrollbar-width: thin; }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  @keyframes fadeUpIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .stagger-1, .stagger-2, .stagger-3, .stagger-4, .stagger-5, .stagger-6 {
+    opacity: 0;
+    animation: fadeUpIn 0.7s ease forwards;
+  }
+  .stagger-1 { animation-delay: 0.05s; }
+  .stagger-2 { animation-delay: 0.15s; }
+  .stagger-3 { animation-delay: 0.25s; }
+  .stagger-4 { animation-delay: 0.35s; }
+  .stagger-5 { animation-delay: 0.45s; }
+  .stagger-6 { animation-delay: 0.3s; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   /* Nav */
   nav {
     display: flex;
@@ -62,9 +109,10 @@
     gap: 40px;
   }
   nav .links a {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 500;
-    letter-spacing: 0.2px;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
     color: var(--muted);
     position: relative;
     padding-bottom: 4px;
@@ -99,14 +147,29 @@
     margin: 0 auto;
     padding: 0 48px 80px;
   }
-  .hero-text { flex: 1; max-width: 620px; }
-  .hero-photo {
+  .hero-text { flex: 1; max-width: 660px; }
+  .hero-photo-wrap {
+    position: relative;
     flex-shrink: 0;
     width: 260px;
     height: 260px;
+  }
+  .hero-photo-blob {
+    position: absolute;
+    top: -70px;
+    right: -90px;
+    width: 320px;
+    height: 320px;
+    z-index: 0;
+  }
+  .hero-photo {
+    position: relative;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     overflow: hidden;
     box-shadow: 0 0 0 8px var(--cream);
+    z-index: 1;
   }
   .hero-photo img {
     width: 100%;
@@ -127,15 +190,21 @@
     margin-bottom: 28px;
   }
   main.hero h1 {
-    font-size: 3.1em;
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -1px;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 3.6em;
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: -0.5px;
     color: var(--maroon);
-    margin: 0 0 22px;
+    margin: 0 0 26px;
+    white-space: normal;
   }
   main.hero h1 span {
     color: var(--tan);
+  }
+  main.hero h1 .nowrap-line {
+    white-space: nowrap;
+    color: var(--maroon);
   }
   main.hero p.lede {
     font-size: 1.1em;
@@ -188,8 +257,10 @@
 
   @media (max-width: 780px) {
     main.hero { flex-direction: column-reverse; gap: 36px; padding: 40px 24px 60px; min-height: auto; }
-    .hero-photo { width: 180px; height: 180px; }
-    main.hero h1 { font-size: 2.3em; }
+    .hero-photo-wrap { width: 180px; height: 180px; }
+    .hero-photo-blob { width: 200px; height: 200px; top: -40px; right: -50px; }
+    main.hero h1 { font-size: 2.4em; }
+    main.hero h1 .nowrap-line { white-space: normal; }
   }
 
   footer {
@@ -199,6 +270,109 @@
     padding: 24px 20px 40px;
   }
   footer a { font-weight: 600; color: var(--tan); }
+  .testimonials {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 50px 32px 90px;
+    text-align: center;
+    position: relative;
+  }
+  .t-bg-blob {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    top: -20px;
+    left: -40px;
+    z-index: 0;
+    transition: width 0.5s ease, height 0.5s ease, top 0.5s ease, left 0.5s ease, transform 0.5s ease;
+  }
+  .t-bg-blob path {
+    transition: fill 0.5s ease, opacity 0.5s ease;
+  }
+  .t-panel {
+    position: relative;
+    background: var(--paper);
+    border-radius: 20px;
+    padding: 56px 48px;
+    box-shadow: 0 16px 40px rgba(89, 50, 50, 0.14), 0 4px 12px rgba(89, 50, 50, 0.08);
+    transform: rotate(-1.2deg);
+    transition: transform 0.5s ease;
+    z-index: 1;
+  }
+  .t-sparkle {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+  }
+  .t-sparkle.tl { top: 20px; left: 24px; }
+  .t-sparkle.br { bottom: 20px; right: 24px; }
+  .testimonials .kicker-t {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-style: italic;
+    font-size: 1.7em;
+    color: var(--maroon);
+    font-weight: 400;
+    margin: 0 0 22px;
+  }
+  .t-quote {
+    font-family: 'Schibsted Grotesk', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.08em;
+    line-height: 1.7;
+    color: var(--text);
+    margin: 0 0 30px;
+  }
+  .t-name-badge {
+    display: inline-block;
+    border: 1.5px solid var(--tan);
+    border-radius: 30px;
+    padding: 9px 24px;
+  }
+  .t-name {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-style: italic;
+    font-size: 1.05em;
+    color: var(--maroon);
+  }
+  .t-role {
+    display: block;
+    color: var(--muted);
+    font-size: 0.76em;
+    font-family: 'Schibsted Grotesk', Arial, sans-serif;
+    font-style: normal;
+    margin-top: 1px;
+  }
+  .t-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 26px;
+  }
+  .t-arrow {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.85em;
+    font-weight: 600;
+    font-family: 'Schibsted Grotesk', Arial, sans-serif;
+    letter-spacing: 0.4px;
+    transition: color 0.15s;
+    padding: 4px 0;
+  }
+  .t-arrow:hover { color: var(--maroon); }
+
+  @media (max-width: 700px) {
+    .testimonials { padding: 20px 24px 50px; }
+    .t-panel { padding: 44px 24px; }
+    .t-bg-blob { width: 180px; height: 180px; top: -10px; left: -20px; }
+    .kicker-t { font-size: 1.4em; }
+    .t-quote { font-size: 1em; }
+    .t-sparkle { width: 18px; height: 18px; }
+  }
+
   .connect-footer {
     text-align: center;
     padding: 50px 20px 20px;
@@ -257,30 +431,60 @@
 
 <main class="hero">
   <div class="hero-text">
-    <span class="eyebrow">Learning &amp; Development Leader</span>
-    <h1>I turn complexity into <span>learning that sticks.</span></h1>
-    <p class="lede">I'm someone who brings order, clarity, and meaning to complexity. I thrive in spaces where ideas need to be shaped, systems need to be understood, and people need to be supported. Whether it's a new curriculum or a training strategy, I'm a builder at heart: thoughtful, detail&#8209;minded, and committed to creating work that feels purposeful and intuitive.</p>
-    <p class="lede">I bring these strengths into every project I take on, designing and improving learning programs that accelerate confidence, capability, and performance. My work helps teams ramp faster, navigate complexity more easily, and feel supported through moments of growth and change.</p>
-    <div class="cred-pills">
+    <span class="eyebrow stagger-1">Learning &amp; Development Leader</span>
+    <h1 class="stagger-2"><span class="nowrap-line">I turn complexity into</span><br><span>learning that sticks.</span></h1>
+    <p class="lede stagger-3">I'm someone who brings order, clarity, and meaning to complexity. I thrive in spaces where ideas need to be shaped, systems need to be understood, and people need to be supported. Whether it's a new curriculum or a training strategy, I'm a builder at heart: thoughtful, detail&#8209;minded, and committed to creating work that feels purposeful and intuitive.</p>
+    <p class="lede" style="opacity:0; animation: fadeUpIn 0.7s ease forwards; animation-delay: 0.32s;">I bring these strengths into every project I take on, designing and improving learning programs that accelerate confidence, capability, and performance. My work helps teams ramp faster, navigate complexity more easily, and feel supported through moments of growth and change.</p>
+    <div class="cred-pills stagger-4">
       <span class="cred-pill">Certified L&amp;D Professional</span>
       <span class="cred-pill">Certified ScrumMaster</span>
       <span class="cred-pill">Master Facilitator</span>
       <span class="cred-pill">Gallup Strengths Coach</span>
       <span class="cred-pill">GenAI Ambassador</span>
     </div>
-    <p style="font-size: 0.88em; color: var(--muted); margin: 0 0 4px;">M.S., Organizational Leadership, Colorado State University (in progress)</p>
-    <p style="font-size: 0.88em; color: var(--muted); margin: 0 0 28px;">B.A., Psychology, Summa Cum Laude, SNHU</p>
-    <div class="cta-row">
+    <p class="stagger-4" style="font-size: 0.88em; color: var(--muted); margin: 0 0 4px;">M.S., Organizational Leadership, Colorado State University (in progress)</p>
+    <p class="stagger-4" style="font-size: 0.88em; color: var(--muted); margin: 0 0 28px;">B.A., Psychology, Summa Cum Laude, SNHU</p>
+    <div class="cta-row stagger-5">
       <a href="portfolio.html" class="btn primary">View My Work</a>
       <a href="about.html" class="btn secondary">Take a Course About Me →</a>
     </div>
   </div>
-  <div class="hero-photo">
-    <img src="tara-headshot.jpeg" alt="Tara Bond">
+  <div class="hero-photo-wrap stagger-6">
+    <svg class="hero-photo-blob" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#ffd7ab" opacity="0.7" d="M44.6,-63.4C56.9,-54.7,64.9,-39.5,68.4,-23.7C71.9,-7.9,70.9,8.5,64.6,22.4C58.3,36.3,46.7,47.7,33.1,56.8C19.5,65.9,3.9,72.7,-12.8,73.2C-29.5,73.7,-47.3,67.9,-58.9,56.1C-70.5,44.3,-75.9,26.5,-76.8,8.9C-77.7,-8.7,-74.1,-26.1,-64.8,-39.4C-55.5,-52.7,-40.5,-61.9,-25.2,-69.6C-9.9,-77.3,5.7,-83.5,20.9,-80.6C36.1,-77.7,50.9,-65.7,44.6,-63.4Z" transform="translate(100 100)"/>
+    </svg>
+    <div class="hero-photo">
+      <img src="tara-headshot.jpeg" alt="Tara Bond">
+    </div>
   </div>
 </main>
 
-<div class="connect-footer">
+<div class="testimonials reveal">
+  <svg class="t-bg-blob" id="t-blob-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <path id="t-blob-path" fill="#a67d51" opacity="0.3" d="M39.5,-56.3C51.3,-49.1,60.8,-37.6,65.6,-24.2C70.4,-10.8,70.5,4.5,65.9,18.1C61.3,31.7,52,43.6,40.1,52.4C28.2,61.2,13.7,66.9,-1.8,69.6C-17.3,72.3,-34.6,72,-47.8,64.1C-61,56.2,-70.1,40.7,-74.2,24.1C-78.3,7.5,-77.4,-10.2,-70.6,-24.8C-63.8,-39.4,-51.1,-50.9,-37.4,-58.1C-23.7,-65.3,-8.9,-68.2,3.9,-73.9C16.7,-79.6,27.7,-63.5,39.5,-56.3Z" transform="translate(100 100)"/>
+  </svg>
+  <div class="t-panel" id="t-panel">
+    <svg class="t-sparkle tl" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13 0 L15.5 10.5 L26 13 L15.5 15.5 L13 26 L10.5 15.5 L0 13 L10.5 10.5 Z" fill="#593232"/>
+    </svg>
+    <svg class="t-sparkle br" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13 0 L15.5 10.5 L26 13 L15.5 15.5 L13 26 L10.5 15.5 L0 13 L10.5 10.5 Z" fill="#593232"/>
+    </svg>
+    <div class="kicker-t">Kind Words</div>
+    <p class="t-quote" id="t-quote">"Her needs assessment work is the strongest I have seen. Her commitment to evidence results in learning experiences that are engaging, relevant, and effective. Tara's anchor will always be the learner."</p>
+    <div class="t-name-badge">
+      <span class="t-name" id="t-name">Chelsea Taylor
+        <span class="t-role" id="t-role">Director @ Visa</span>
+      </span>
+    </div>
+    <div class="t-nav">
+      <button class="t-arrow" onclick="prevT()">← Previous</button>
+      <button class="t-arrow" onclick="nextT()">Next →</button>
+    </div>
+  </div>
+</div>
+
+<div class="connect-footer reveal">
   <h2>Let's Connect</h2>
   <div class="connect-links">
     <a href="https://www.linkedin.com/in/taraneh-tara-bond" target="_blank" class="connect-link">
@@ -297,6 +501,116 @@
 <footer class="credit">
   Built from scratch with HTML &amp; CSS &nbsp;·&nbsp; <a href="https://github.com/taraneh-code" target="_blank">View source on GitHub</a>
 </footer>
+
+<script>
+  const testimonials = [
+    {
+      quote: "Her needs assessment work is the strongest I have seen. Her commitment to evidence results in learning experiences that are engaging, relevant, and effective. Tara's anchor will always be the learner.",
+      name: "Chelsea Taylor",
+      role: "Director @ Visa",
+      blobColor: "#a67d51",
+      blobOpacity: 0.3,
+      blobSize: 260,
+      blobTop: -20,
+      blobLeft: -40,
+      blobRotate: 0,
+      blobPath: "M39.5,-56.3C51.3,-49.1,60.8,-37.6,65.6,-24.2C70.4,-10.8,70.5,4.5,65.9,18.1C61.3,31.7,52,43.6,40.1,52.4C28.2,61.2,13.7,66.9,-1.8,69.6C-17.3,72.3,-34.6,72,-47.8,64.1C-61,56.2,-70.1,40.7,-74.2,24.1C-78.3,7.5,-77.4,-10.2,-70.6,-24.8C-63.8,-39.4,-51.1,-50.9,-37.4,-58.1C-23.7,-65.3,-8.9,-68.2,3.9,-73.9C16.7,-79.6,27.7,-63.5,39.5,-56.3Z"
+    },
+    {
+      quote: "She does not just talk about innovation; she builds it. Whether leveraging tools like Perplexity to sharpen learning objectives or building persona chatbots to scale onboarding, she constantly finds pragmatic ways to modernize how we deliver enablement.",
+      name: "Nathan D McClure",
+      role: "Technical Enablement Architect, AI Strategy @ Visa",
+      blobColor: "#ffd7ab",
+      blobOpacity: 0.55,
+      blobSize: 320,
+      blobTop: -50,
+      blobLeft: -70,
+      blobRotate: 25,
+      blobPath: "M44.6,-63.4C56.9,-54.7,64.9,-39.5,68.4,-23.7C71.9,-7.9,70.9,8.5,64.6,22.4C58.3,36.3,46.7,47.7,33.1,56.8C19.5,65.9,3.9,72.7,-12.8,73.2C-29.5,73.7,-47.3,67.9,-58.9,56.1C-70.5,44.3,-75.9,26.5,-76.8,8.9C-77.7,-8.7,-74.1,-26.1,-64.8,-39.4C-55.5,-52.7,-40.5,-61.9,-25.2,-69.6C-9.9,-77.3,5.7,-83.5,20.9,-80.6C36.1,-77.7,50.9,-65.7,44.6,-63.4Z"
+    },
+    {
+      quote: "She has a unique ability to see situations from multiple perspectives, whether partnering with stakeholders or supporting learners, which allows her to create solutions that truly resonate.",
+      name: "Lani Fissore",
+      role: "Onboarding Architect (former manager @ Redfin)",
+      blobColor: "#593232",
+      blobOpacity: 0.12,
+      blobSize: 220,
+      blobTop: -10,
+      blobLeft: -30,
+      blobRotate: -15,
+      blobPath: "M48.2,-58.8C61.4,-49.3,70.2,-33.6,73.1,-16.9C76,-0.2,73,17.5,64.4,31.9C55.8,46.3,41.6,57.4,25.7,64.1C9.8,70.8,-7.8,73.1,-24.1,68.8C-40.4,64.5,-55.4,53.6,-64.8,39C-74.2,24.4,-78,6.1,-75.2,-11.1C-72.4,-28.3,-63,-44.4,-49.7,-53.9C-36.4,-63.4,-19.2,-66.3,-1.2,-64.6C16.8,-62.9,35,-68.3,48.2,-58.8Z"
+    },
+    {
+      quote: "She's direct, learner-centric, and deeply committed to creating inclusive, meaningful experiences for others. She's not afraid to challenge perspectives, including her own.",
+      name: "Amber Laidman",
+      role: "Learning Experience Architect @ Visa",
+      blobColor: "#a67d51",
+      blobOpacity: 0.28,
+      blobSize: 300,
+      blobTop: -60,
+      blobLeft: -20,
+      blobRotate: 40,
+      blobPath: "M42.1,-54.2C53.7,-47.6,61.6,-34.4,65.9,-19.9C70.2,-5.4,70.9,10.4,65.6,24.3C60.3,38.2,49,50.2,35.4,58.1C21.8,66,7.9,69.8,-6.6,69.4C-21.1,69,-42.2,64.4,-56.6,53.1C-71,41.8,-78.7,23.8,-79.4,5.3C-80.1,-13.2,-73.8,-32.2,-61.6,-45.3C-49.4,-58.4,-31.3,-65.6,-13.6,-67.1C4.1,-68.6,20.5,-64.4,42.1,-54.2Z"
+    },
+    {
+      quote: "Taraneh is one of the best trainers I've had. She cares deeply that you learn and that you succeed.",
+      name: "Christine Teixeira Pinto",
+      role: "Sales Professional (trained @ Redfin)",
+      blobColor: "#ffd7ab",
+      blobOpacity: 0.6,
+      blobSize: 240,
+      blobTop: -30,
+      blobLeft: -50,
+      blobRotate: -30,
+      blobPath: "M39.9,-50.6C50.4,-42.3,57,-29.2,61.4,-14.8C65.8,-0.4,68,14.3,63.3,26.7C58.6,39.1,47,49.2,33.8,56.5C20.6,63.8,5.8,68.3,-9.6,68.9C-25,69.5,-41,66.2,-52.7,56.7C-64.4,47.2,-71.8,31.5,-74.5,14.9C-77.2,-1.7,-75.2,-19.2,-67.1,-33.2C-59,-47.2,-44.8,-57.7,-30.2,-64.9C-15.6,-72.1,-0.6,-76,12.1,-73.1C24.8,-70.2,29.4,-58.9,39.9,-50.6Z"
+    }
+  ];
+
+  let tIndex = 0;
+  let tTimer;
+
+  function renderT() {
+    const t = testimonials[tIndex];
+    document.getElementById('t-quote').textContent = '"' + t.quote + '"';
+    document.getElementById('t-name').firstChild.textContent = t.name + ' ';
+    document.getElementById('t-role').textContent = t.role;
+
+    const blobSvg = document.getElementById('t-blob-svg');
+    blobSvg.style.width = t.blobSize + 'px';
+    blobSvg.style.height = t.blobSize + 'px';
+    blobSvg.style.top = t.blobTop + 'px';
+    blobSvg.style.left = t.blobLeft + 'px';
+    blobSvg.style.transform = 'rotate(' + t.blobRotate + 'deg)';
+
+    const blobPath = document.getElementById('t-blob-path');
+    blobPath.setAttribute('d', t.blobPath);
+    blobPath.setAttribute('fill', t.blobColor);
+    blobPath.setAttribute('opacity', t.blobOpacity);
+  }
+
+  function nextT() { tIndex = (tIndex + 1) % testimonials.length; renderT(); resetTimer(); }
+  function prevT() { tIndex = (tIndex - 1 + testimonials.length) % testimonials.length; renderT(); resetTimer(); }
+  function resetTimer() {
+    clearInterval(tTimer);
+    tTimer = setInterval(nextT, 7000);
+  }
+
+  renderT();
+  resetTimer();
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  console.log('%cHey, curious minds welcome.', 'color:#593232; font-size:16px; font-weight:bold;');
+  console.log('%cThis whole site is hand-coded HTML, CSS, and JS — no framework, no build step. View source, poke around, or say hi: bondtaraneh@gmail.com', 'color:#8a6339; font-size:13px;');
+</script>
 
 </body>
 </html>
