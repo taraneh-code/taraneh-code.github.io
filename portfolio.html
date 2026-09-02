@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="logo.png">
+<meta name="theme-color" content="#593232">
 <title>Portfolio — Tara Bond</title>
 <meta property="og:title" content="Portfolio — Tara Bond">
 <meta property="og:description" content="Selected work from Tara Bond: interactive eLearning builds, business-critical training, and editorial design.">
@@ -15,7 +17,7 @@
 <meta name="twitter:image" content="https://taraneh-code.github.io/newsletter-cover.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root {
     --maroon: #593232;
@@ -36,6 +38,26 @@
     overflow-x: hidden;
   }
   a { text-decoration: none; color: inherit; }
+
+  ::selection {
+    background: var(--blush);
+    color: var(--maroon);
+  }
+
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: var(--tan); border-radius: 10px; border: 2px solid var(--cream); }
+  * { scrollbar-color: var(--tan) var(--cream); scrollbar-width: thin; }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
 
   .bg-blob { position: absolute; z-index: -1; pointer-events: none; }
   .blob-1 { top: -30px; right: -90px; width: 360px; }
@@ -60,9 +82,10 @@
   }
   nav .links { display: flex; gap: 40px; }
   nav .links a {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 500;
-    letter-spacing: 0.2px;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
     color: var(--muted);
     padding-bottom: 4px;
     position: relative;
@@ -96,10 +119,11 @@
     margin-bottom: 18px;
   }
   header.hero h1 {
-    font-size: 3.2em;
-    font-weight: 800;
-    line-height: 1.02;
-    letter-spacing: -1.5px;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 3.6em;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
     color: var(--maroon);
     margin: 0 0 20px;
   }
@@ -163,9 +187,10 @@
     border-radius: 20px;
   }
   .case-body h2 {
-    font-size: 1.9em;
-    font-weight: 800;
-    letter-spacing: -0.5px;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 2em;
+    font-weight: 400;
+    letter-spacing: -0.3px;
     color: var(--maroon);
     margin: 0 0 6px;
   }
@@ -398,6 +423,11 @@
 <footer class="credit">
   Built from scratch with HTML &amp; CSS &nbsp;·&nbsp; <a href="https://github.com/taraneh-code" target="_blank">View source on GitHub</a>
 </footer>
+
+<script>
+  console.log('%cHey, curious minds welcome.', 'color:#593232; font-size:16px; font-weight:bold;');
+  console.log('%cThis whole site is hand-coded HTML, CSS, and JS — no framework, no build step. View source, poke around, or say hi: bondtaraneh@gmail.com', 'color:#8a6339; font-size:13px;');
+</script>
 
 </body>
 </html>
