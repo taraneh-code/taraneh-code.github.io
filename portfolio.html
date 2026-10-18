@@ -5,43 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="logo.png">
 <meta name="theme-color" content="#593232">
-<title>Tara Bond</title>
-<meta property="og:title" content="Tara Bond — Learning & Development Leader">
-<meta property="og:description" content="Portfolio site for Tara Bond, an L&D leader specializing in training management, enablement, and instructional design. Built from scratch with HTML and CSS.">
-<meta property="og:image" content="https://taraneh-code.github.io/tara-headshot.jpeg">
-<meta property="og:url" content="https://taraneh-code.github.io/">
+<title>Portfolio — Tara Bond</title>
+<meta property="og:title" content="Portfolio — Tara Bond">
+<meta property="og:description" content="Selected work from Tara Bond: interactive eLearning builds, business-critical training, and editorial design.">
+<meta property="og:image" content="https://taraneh-code.github.io/share-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tara Bond: I turn complexity into learning that sticks.">
+<meta property="og:url" content="https://taraneh-code.github.io/portfolio.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Tara Bond — Learning & Development Leader">
-<meta name="twitter:description" content="Portfolio site for Tara Bond, an L&D leader specializing in training management, enablement, and instructional design.">
-<meta name="twitter:image" content="https://taraneh-code.github.io/tara-headshot.jpeg">
+<meta name="twitter:title" content="Portfolio — Tara Bond">
+<meta name="twitter:description" content="Selected work from Tara Bond: interactive eLearning builds, business-critical training, and editorial design.">
+<meta name="twitter:image" content="https://taraneh-code.github.io/share-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root {
     --maroon: #593232;
     --tan: #8a6339;
     --cream: #f7f2ee;
+    --paper: #ffffff; /* same page background as Home and About */
     --blush: #ffd7ab;
-    --paper: #ffffff;
     --text: #2b2320;
     --muted: #6f5e50;
     --border: #eee3d8;
   }
-
   * { box-sizing: border-box; }
-
-  html, body {
+  html { position: relative; background: var(--paper); overflow-x: hidden; overflow-x: clip; }
+  body {
     margin: 0;
-    height: 100%;
     font-family: 'Schibsted Grotesk', Arial, sans-serif;
-    background: var(--paper);
     color: var(--text);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    overflow-x: clip; /* clip (unlike hidden) keeps the sticky nav working */
   }
-
   a { text-decoration: none; color: inherit; }
 
   ::selection {
@@ -50,9 +50,9 @@
   }
 
   ::-webkit-scrollbar { width: 10px; }
-  ::-webkit-scrollbar-track { background: var(--cream); }
-  ::-webkit-scrollbar-thumb { background: var(--tan); border-radius: 10px; border: 2px solid var(--cream); }
-  * { scrollbar-color: var(--tan) var(--cream); scrollbar-width: thin; }
+  ::-webkit-scrollbar-track { background: var(--paper); }
+  ::-webkit-scrollbar-thumb { background: var(--tan); border-radius: 10px; border: 2px solid var(--paper); }
+  * { scrollbar-color: var(--tan) var(--paper); scrollbar-width: thin; }
 
   body::before {
     content: '';
@@ -64,63 +64,46 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  @keyframes fadeUpIn {
-    from { opacity: 0; transform: translateY(14px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .stagger-1, .stagger-2, .stagger-3, .stagger-4, .stagger-5, .stagger-6 {
-    opacity: 0;
-    animation: fadeUpIn 0.7s ease forwards;
-  }
-  .stagger-1 { animation-delay: 0.05s; }
-  .stagger-2 { animation-delay: 0.15s; }
-  .stagger-3 { animation-delay: 0.25s; }
-  .stagger-4 { animation-delay: 0.35s; }
-  .stagger-5 { animation-delay: 0.45s; }
-  .stagger-6 { animation-delay: 0.3s; }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
+  .bg-blob { position: absolute; z-index: -1; pointer-events: none; }
+  .blob-1 { top: -30px; right: -90px; width: 360px; }
+  .blob-2 { bottom: 40px; left: -100px; width: 340px; }
+  @media (max-width: 640px) {
+    .blob-1 { width: 200px; right: -70px; }
+    .blob-2 { width: 190px; left: -70px; }
   }
 
-  /* Nav */
   nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 32px 48px;
+    padding: 20px 48px;
+    /* Sticky nav with a soft frosted-glass look */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.85);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(89, 50, 50, 0.08);
   }
   nav .name {
-    font-family: 'Schibsted Grotesk', Arial, sans-serif;
     font-weight: 400;
     font-size: 15px;
     letter-spacing: 1.8px;
     text-transform: uppercase;
     color: var(--maroon);
   }
-  nav .links {
-    display: flex;
-    gap: 40px;
-  }
+  nav .links { display: flex; gap: 40px; }
   nav .links a {
     font-size: 13px;
     font-weight: 500;
     letter-spacing: 1.8px;
     text-transform: uppercase;
     color: var(--muted);
-    position: relative;
     padding-bottom: 4px;
+    position: relative;
   }
-  nav .links a.active {
-    color: var(--maroon);
-    font-weight: 600;
-  }
+  nav .links a.active { color: var(--maroon); font-weight: 600; }
   nav .links a.active::after {
     content: '';
     position: absolute;
@@ -133,135 +116,132 @@
 
   @media (max-width: 640px) {
     nav { padding: 24px 24px; flex-direction: column; gap: 18px; align-items: flex-start; }
-    nav .links { gap: 22px; }
   }
 
-  /* Hero */
-  main.hero {
-    min-height: calc(100vh - 96px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 64px;
-    max-width: 1040px;
+  header.hero {
+    max-width: 720px;
     margin: 0 auto;
-    padding: 0 48px 80px;
+    padding: 40px 32px 70px;
   }
-  .hero-text { flex: 1; max-width: 660px; }
-  .hero-photo-wrap {
-    position: relative;
-    flex-shrink: 0;
-    width: 260px;
-    height: 260px;
-  }
-  .hero-photo-blob {
-    position: absolute;
-    top: -70px;
-    right: -90px;
-    width: 320px;
-    height: 320px;
-    z-index: 0;
-  }
-  .hero-photo {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 0 0 8px var(--cream);
-    z-index: 1;
-  }
-  .hero-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  main.hero .eyebrow {
-    display: inline-block;
-    background: var(--blush);
-    color: var(--maroon);
-    font-size: 12px;
+  .kicker {
+    font-size: 13px;
     font-weight: 700;
-    letter-spacing: 1.2px;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    padding: 7px 16px;
-    border-radius: 30px;
-    margin-bottom: 28px;
+    color: var(--tan);
+    margin-bottom: 18px;
   }
-  main.hero h1 {
+  header.hero h1 {
     font-family: 'DM Serif Display', Georgia, serif;
     font-size: 3.6em;
     font-weight: 400;
-    line-height: 1.12;
+    line-height: 1.1;
     letter-spacing: -0.5px;
     color: var(--maroon);
-    margin: 0 0 26px;
-    white-space: normal;
+    margin: 0 0 20px;
   }
-  main.hero h1 span {
-    color: var(--tan);
-  }
-  main.hero h1 .nowrap-line {
-    white-space: nowrap;
-    color: var(--maroon);
-  }
-  main.hero p.lede {
-    font-size: 1.1em;
-    line-height: 1.65;
+  header.hero p {
+    font-size: 1.15em;
+    line-height: 1.6;
     color: var(--muted);
-    margin: 0 0 18px;
+    max-width: 540px;
+    margin: 0;
   }
-  main.hero p.lede:last-of-type {
-    margin: 0 0 36px;
-  }
-  .cred-pills {
+
+  .cases {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 32px 120px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 0 0 28px;
+    flex-direction: column;
+    gap: 48px;
   }
-  .cred-pill {
+
+  /* Each case study is a white card floating on the white page (hairline edge + soft shadow) */
+  .case {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 24px 24px 32px;
+    border: 1px solid rgba(89, 50, 50, 0.08);
+    box-shadow: 0 18px 44px rgba(43, 35, 32, 0.10), 0 2px 8px rgba(43, 35, 32, 0.06);
+  }
+  .case-media {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 16px;
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .case-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .case-media .placeholder-label {
+    font-size: 0.85em;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 0.4px;
+  }
+
+  /* Embedded Google Doc: fixed height, scrolls inside the frame */
+  .case-media.doc-embed { aspect-ratio: auto; height: 700px; }
+
+  /* Newsletter cover image */
+  .case-media.newsletter-media { aspect-ratio: auto; height: 500px; background: #1a2a5e; }
+  .case-media.newsletter-media img { width: 100%; height: 100%; object-fit: contain; }
+
+  .case-body .tag-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .case-body .tag {
     background: var(--cream);
     color: var(--maroon);
-    font-size: 0.82em;
+    font-size: 0.8em;
     font-weight: 600;
-    padding: 7px 14px;
+    padding: 5px 12px;
     border-radius: 20px;
   }
-
-  main.hero .cta-row {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-  .btn {
-    display: inline-block;
-    padding: 14px 28px;
-    border-radius: 30px;
-    font-weight: 700;
-    font-size: 0.95em;
-    transition: opacity 0.15s, transform 0.15s;
-  }
-  .btn.primary {
-    background: var(--maroon);
-    color: white;
-  }
-  .btn.primary:hover { opacity: 0.88; transform: translateY(-1px); }
-  .btn.secondary {
-    background: transparent;
+  .case-body h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 2em;
+    font-weight: 400;
+    letter-spacing: -0.3px;
     color: var(--maroon);
-    border: 1.5px solid var(--border);
+    margin: 0 0 6px;
   }
-  .btn.secondary:hover { background: var(--cream); }
-
-  @media (max-width: 780px) {
-    main.hero { flex-direction: column-reverse; gap: 36px; padding: 40px 24px 60px; min-height: auto; }
-    .hero-photo-wrap { width: 180px; height: 180px; }
-    .hero-photo-blob { width: 200px; height: 200px; top: -40px; right: -50px; }
-    main.hero h1 { font-size: 2.4em; }
-    main.hero h1 .nowrap-line { white-space: normal; }
+  .case-body p.goal {
+    font-style: italic;
+    color: var(--tan);
+    font-size: 1.05em;
+    margin: 0 0 16px;
   }
+  .case-body p.desc {
+    font-size: 1.05em;
+    line-height: 1.7;
+    color: var(--text);
+    margin: 0 0 18px;
+    max-width: 600px;
+  }
+  .case-body a.view-link {
+    font-weight: 700;
+    color: var(--maroon);
+    font-size: 0.98em;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .case-body a.view-link:hover { color: var(--tan); }
 
   footer {
     text-align: center;
@@ -270,114 +250,52 @@
     padding: 24px 20px 40px;
   }
   footer a { font-weight: 600; color: var(--tan); }
-  .testimonials {
-    max-width: 620px;
-    margin: 0 auto;
-    padding: 50px 32px 90px;
-    text-align: center;
+  .launch-card {
     position: relative;
-  }
-  .t-bg-blob {
-    position: absolute;
-    width: 260px;
-    height: 260px;
-    top: -20px;
-    left: -40px;
-    z-index: 0;
-    transition: width 0.5s ease, height 0.5s ease, top 0.5s ease, left 0.5s ease, transform 0.5s ease;
-  }
-  .t-bg-blob path {
-    transition: fill 0.5s ease, opacity 0.5s ease;
-  }
-  .t-panel {
-    position: relative;
-    background: var(--paper);
-    border-radius: 20px;
-    padding: 56px 48px;
-    box-shadow: 0 16px 40px rgba(89, 50, 50, 0.14), 0 4px 12px rgba(89, 50, 50, 0.08);
-    transform: rotate(-1.2deg);
-    transition: transform 0.5s ease;
-    z-index: 1;
-  }
-  .t-sparkle {
-    position: absolute;
-    width: 26px;
-    height: 26px;
-  }
-  .t-sparkle.tl { top: 20px; left: 24px; }
-  .t-sparkle.br { bottom: 20px; right: 24px; }
-  .testimonials .kicker-t {
-    font-family: 'DM Serif Display', Georgia, serif;
-    font-style: italic;
-    font-size: 1.7em;
-    color: var(--maroon);
-    font-weight: 400;
-    margin: 0 0 22px;
-  }
-  .t-quote {
-    font-family: 'Schibsted Grotesk', Arial, sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 1.08em;
-    line-height: 1.7;
-    color: var(--text);
-    margin: 0 0 30px;
-  }
-  .t-name-badge {
-    display: inline-block;
-    border: 1.5px solid var(--tan);
-    border-radius: 30px;
-    padding: 9px 24px;
-  }
-  .t-name {
-    font-family: 'DM Serif Display', Georgia, serif;
-    font-style: italic;
-    font-size: 1.05em;
-    color: var(--maroon);
-  }
-  .t-role {
-    display: block;
-    color: var(--muted);
-    font-size: 0.76em;
-    font-family: 'Schibsted Grotesk', Arial, sans-serif;
-    font-style: normal;
-    margin-top: 1px;
-  }
-  .t-nav {
+    background: radial-gradient(circle at 50% 30%, #6b3f3f, #2a1717 75%);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 28px;
-    margin-top: 26px;
+    gap: 18px;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    overflow: hidden;
   }
-  .t-arrow {
-    background: none;
-    border: none;
-    color: var(--muted);
-    cursor: pointer;
-    font-size: 0.85em;
-    font-weight: 600;
-    font-family: 'Schibsted Grotesk', Arial, sans-serif;
-    letter-spacing: 0.4px;
-    transition: color 0.15s;
-    padding: 4px 0;
+  .launch-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      100deg,
+      rgba(0,0,0,0.25) 0px,
+      rgba(0,0,0,0.25) 14px,
+      transparent 14px,
+      transparent 34px
+    );
+    pointer-events: none;
   }
-  .t-arrow:hover { color: var(--maroon); }
-
-  @media (max-width: 700px) {
-    .testimonials { padding: 20px 24px 50px; }
-    .t-panel { padding: 44px 24px; }
-    .t-bg-blob { width: 180px; height: 180px; top: -10px; left: -20px; }
-    .kicker-t { font-size: 1.4em; }
-    .t-quote { font-size: 1em; }
-    .t-sparkle { width: 18px; height: 18px; }
+  .launch-card > * { position: relative; z-index: 1; }
+  .launch-card .noir-icon { opacity: 0.9; }
+  .launch-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--blush);
+    color: var(--maroon);
+    font-weight: 700;
+    font-size: 0.95em;
+    padding: 12px 26px;
+    border-radius: 30px;
+    transition: opacity 0.15s, transform 0.15s;
   }
-
+  .launch-btn:hover { opacity: 0.9; transform: translateY(-1px); }
   .connect-footer {
     text-align: center;
     padding: 50px 20px 20px;
   }
-  .connect-footer h2 {
+  .connect-footer h3 {
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 1.6px;
@@ -395,7 +313,8 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--cream);
+    background: #ffffff;
+    border: 1.5px solid var(--border);
     color: var(--maroon);
     font-size: 0.92em;
     font-weight: 600;
@@ -413,16 +332,6 @@
     padding: 24px 20px 40px;
   }
   footer.credit a { font-weight: 600; color: var(--tan); }
-
-  @media (prefers-reduced-motion: reduce) {
-    .reveal, .stagger-1, .stagger-2, .stagger-3, .stagger-4, .stagger-5, .stagger-6 {
-      opacity: 1 !important;
-      transform: none !important;
-      animation: none !important;
-      transition: none !important;
-    }
-    * { scroll-behavior: auto !important; }
-  }
 
   .skip-link {
     position: absolute;
@@ -442,24 +351,18 @@
     top: 12px;
   }
 
-  /* Education lines (moved out of inline styles so phones can resize them) */
-  .edu { font-size: 0.88em; color: var(--muted); margin: 0 0 4px; }
-  .edu.last { margin-bottom: 28px; }
-
   /* ============================================================
-     MOBILE REFINEMENTS
-     Desktop layout is unchanged.
+     MOBILE REFINEMENTS (phones, 640px and under)
+     Desktop and tablet layouts above are unchanged.
      ============================================================ */
-
-  /* Small laptops / tablets in landscape: let the headline wrap
-     so it can't run underneath the headshot */
-  @media (min-width: 781px) and (max-width: 1040px) {
-    main.hero h1 { font-size: 3em; }
-    main.hero h1 .nowrap-line { white-space: normal; }
-  }
-
-  /* Phones */
   @media (max-width: 640px) {
+
+    /* Compact one-row nav so the sticky bar stays slim on phones
+       (the logo stays; the written name is hidden to make room) */
+    nav { padding: 8px 20px; flex-direction: row; align-items: center; gap: 12px; }
+    nav .name { display: none; }
+    nav .links { gap: 20px; }
+
     /* Nav links: at least 44px tall to tap */
     nav .links a {
       display: inline-flex;
@@ -469,20 +372,185 @@
     }
     nav .links a.active::after { bottom: 12px; }
 
-    /* Education lines: 16px so no zooming is needed */
-    .edu { font-size: 1em; }
+    /* Tighter page padding and spacing */
+    header.hero { padding: 24px 24px 40px; }
+    header.hero h1 { font-size: clamp(2.6em, 12vw, 3.6em); }
+    .cases { padding: 0 16px 80px; gap: 32px; }
+    .case { padding: 14px 14px 24px; gap: 20px; border-radius: 16px; }
+    .case-body h2 { font-size: 1.6em; }
 
-    /* Testimonial Previous / Next: 44px tap targets */
-    .t-arrow { min-height: 44px; padding: 0 12px; }
+    /* The Human Lie Detector card: let it grow to fit its content
+       instead of being squeezed into a 16:9 box */
+    .launch-card { aspect-ratio: auto; padding: 32px 20px; }
+    .launch-btn { min-height: 44px; }
 
-    /* Footer pills: 44px tall */
+    /* Google Doc embed: shorter so it doesn't take over the screen */
+    .case-media.doc-embed { height: 480px; }
+
+    /* Newsletter cover: show the whole image at the screen's width */
+    .case-media.newsletter-media { height: auto; }
+    .case-media.newsletter-media img { height: auto; }
+
+    /* Text links and footer pills: 44px tap targets */
+    .case-body a.view-link { min-height: 44px; }
     .connect-link { min-height: 44px; }
   }
 
-  /* Small phones: stack the two hero buttons full width */
-  @media (max-width: 480px) {
-    main.hero .cta-row { flex-direction: column; }
-    .btn { text-align: center; }
+  /* ============================================================
+     RESULTS CARD (proof points, sits above the case studies)
+     ============================================================ */
+  .results-wrap { max-width: 900px; margin: 0 auto; padding: 0 32px 48px; }
+  .results-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 36px 32px 32px;
+    border: 1px solid rgba(89, 50, 50, 0.08);
+    box-shadow: 0 18px 44px rgba(43, 35, 32, 0.10), 0 2px 8px rgba(43, 35, 32, 0.06);
+  }
+  .results-kicker {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--tan);
+    margin: 0 0 28px;
+    text-align: center;
+  }
+  .results-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: start;
+  }
+  .results-grid li { padding: 4px 18px; text-align: center; }
+  /* thin hairlines between the stats */
+  .results-grid li + li { border-left: 1px solid rgba(89, 50, 50, 0.15); }
+  .stat {
+    display: block;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 3em;
+    line-height: 1;
+    color: var(--maroon);
+    margin-bottom: 10px;
+  }
+  .stat-label { display: block; font-size: 0.95em; line-height: 1.4; color: var(--muted); }
+  .stat-source {
+    display: block;
+    margin-top: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--tan);
+  }
+  .results-note {
+    margin: 28px 0 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(89, 50, 50, 0.12);
+    text-align: center;
+    font-size: 0.95em;
+    color: var(--muted);
+  }
+  /* Tablets and phones: 2 x 2 grid so the labels never get squeezed */
+  @media (max-width: 760px) {
+    .results-grid { grid-template-columns: repeat(2, 1fr); }
+    .results-grid li { padding: 20px 12px; }
+    .results-grid li + li { border-left: none; }
+    .results-grid li:nth-child(even) { border-left: 1px solid rgba(89, 50, 50, 0.15); }
+    .results-grid li:nth-child(n+3) { border-top: 1px solid rgba(89, 50, 50, 0.15); }
+  }
+  @media (max-width: 640px) {
+    .results-wrap { padding: 0 16px 32px; }
+    .results-card { padding: 28px 16px 24px; border-radius: 16px; }
+    .stat { font-size: 2.5em; }
+  }
+
+  /* ============================================================
+     "READ THE STORY" TOGGLE (expandable case-study detail)
+     Uses native <details>: works with tap, click and keyboard, no JS.
+     ============================================================ */
+  .story { margin-top: 18px; }
+  .story summary {
+    list-style: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;          /* comfortable tap target */
+    padding: 0 18px;
+    border-radius: 999px;
+    border: 1.5px solid var(--maroon);
+    color: var(--maroon);
+    font-weight: 700;
+    font-size: 0.95em;
+  }
+  .story summary::-webkit-details-marker { display: none; }
+  .story summary::after { content: "+"; font-size: 1.25em; line-height: 1; }
+  .story[open] summary::after { content: "\2212"; }
+  .story summary:hover { background: var(--blush); }
+  .story summary:focus-visible { outline: 3px solid var(--tan); outline-offset: 3px; }
+  .story-body { padding-top: 22px; }
+  .story-body h3 {
+    margin: 22px 0 6px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--tan);
+  }
+  .story-body h3:first-child { margin-top: 0; }
+  .story-body p, .story-body li { font-size: 1em; line-height: 1.7; color: var(--text); }
+  .story-body p { margin: 0; }
+  .story-body ul { margin: 0; padding-left: 20px; }
+  .story-body li { margin-bottom: 6px; }
+
+  /* ============================================================
+     NUMBERED CASE STUDIES WITH HAIRLINES
+     The numbers are generated automatically (01, 02, 03...), so if you
+     add or reorder a case study you don't have to renumber anything.
+     ============================================================ */
+  .cases { counter-reset: case; }
+  .case { counter-increment: case; }
+  .case-body::before {
+    content: counter(case, decimal-leading-zero);
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--tan);
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid rgba(89, 50, 50, 0.12);
+  }
+  .case-body a.view-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  /* ============================================================
+     MAROON FOOTER BAND
+     ============================================================ */
+  .connect-footer {
+    background: var(--maroon);
+    padding: 72px 24px 40px;
+  }
+  .connect-footer h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 2.2em;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: -0.3px;
+    color: var(--cream);
+    margin: 0 0 24px;
+  }
+  .connect-link { background: var(--cream); border: none; color: var(--maroon); }
+  footer.credit {
+    background: var(--maroon);
+    color: #e0cfc0;
+    padding: 0 20px 40px;
+  }
+  @media (max-width: 640px) {
+    .connect-footer { padding: 56px 20px 32px; }
+    .connect-footer h3 { font-size: 1.8em; }
   }
 </style>
 </head>
@@ -490,75 +558,177 @@
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
+<svg class="bg-blob blob-1" aria-hidden="true" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#a67d51" opacity="0.25" d="M39.5,-56.3C51.3,-49.1,60.8,-37.6,65.6,-24.2C70.4,-10.8,70.5,4.5,65.9,18.1C61.3,31.7,52,43.6,40.1,52.4C28.2,61.2,13.7,66.9,-1.8,69.6C-17.3,72.3,-34.6,72,-47.8,64.1C-61,56.2,-70.1,40.7,-74.2,24.1C-78.3,7.5,-77.4,-10.2,-70.6,-24.8C-63.8,-39.4,-51.1,-50.9,-37.4,-58.1C-23.7,-65.3,-8.9,-68.2,3.9,-73.9C16.7,-79.6,27.7,-63.5,39.5,-56.3Z" transform="translate(100 100)"/>
+</svg>
+<svg class="bg-blob blob-2" aria-hidden="true" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#ffd7ab" opacity="0.5" d="M44.6,-63.4C56.9,-54.7,64.9,-39.5,68.4,-23.7C71.9,-7.9,70.9,8.5,64.6,22.4C58.3,36.3,46.7,47.7,33.1,56.8C19.5,65.9,3.9,72.7,-12.8,73.2C-29.5,73.7,-47.3,67.9,-58.9,56.1C-70.5,44.3,-75.9,26.5,-76.8,8.9C-77.7,-8.7,-74.1,-26.1,-64.8,-39.4C-55.5,-52.7,-40.5,-61.9,-25.2,-69.6C-9.9,-77.3,5.7,-83.5,20.9,-80.6C36.1,-77.7,50.9,-65.7,44.6,-63.4Z" transform="translate(100 100)"/>
+</svg>
+
 <nav>
   <div style="display:flex; align-items:center; gap:10px;">
     <img src="logo.png" alt="Tara Bond logo" style="height:36px; width:auto; display:block;">
     <div class="name">Tara Bond</div>
   </div>
   <div class="links">
-    <a href="index.html" class="active">Home</a>
+    <a href="index.html">Home</a>
     <a href="about.html">About</a>
-    <a href="portfolio.html">Portfolio</a>
+    <a href="portfolio.html" class="active">Portfolio</a>
   </div>
 </nav>
 
-<main class="hero" id="main-content">
-  <div class="hero-text">
-    <span class="eyebrow stagger-1">Learning &amp; Development Leader</span>
-    <h1 class="stagger-2"><span class="nowrap-line">I turn complexity into</span><br><span>learning that sticks.</span></h1>
-    <p class="lede stagger-3">I'm someone who brings order, clarity, and meaning to complexity. I thrive in spaces where ideas need to be shaped, systems need to be understood, and people need to be supported. Whether it's a new curriculum or a training strategy, I'm a builder at heart: thoughtful, detail&#8209;minded, and committed to creating work that feels purposeful and intuitive.</p>
-    <p class="lede" style="opacity:0; animation: fadeUpIn 0.7s ease forwards; animation-delay: 0.32s;">I bring these strengths into every project I take on, designing and improving learning programs that accelerate confidence, capability, and performance. My work helps teams ramp faster, navigate complexity more easily, and feel supported through moments of growth and change.</p>
-    <div class="cred-pills stagger-4">
-      <span class="cred-pill">Certified L&amp;D Professional</span>
-      <span class="cred-pill">Certified ScrumMaster</span>
-      <span class="cred-pill">Master Facilitator</span>
-      <span class="cred-pill">Gallup Strengths Coach</span>
-      <span class="cred-pill">GenAI Ambassador</span>
-    </div>
-    <p class="stagger-4 edu">M.S., Organizational Leadership, Colorado State University (in progress)</p>
-    <p class="stagger-4 edu last">B.A., Psychology, Summa Cum Laude, SNHU</p>
-    <div class="cta-row stagger-5">
-      <a href="portfolio.html" class="btn primary">View My Work</a>
-      <a href="about.html" class="btn secondary">Take a Course About Me →</a>
-    </div>
-  </div>
-  <div class="hero-photo-wrap stagger-6">
-    <svg class="hero-photo-blob" aria-hidden="true" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#ffd7ab" opacity="0.7" d="M44.6,-63.4C56.9,-54.7,64.9,-39.5,68.4,-23.7C71.9,-7.9,70.9,8.5,64.6,22.4C58.3,36.3,46.7,47.7,33.1,56.8C19.5,65.9,3.9,72.7,-12.8,73.2C-29.5,73.7,-47.3,67.9,-58.9,56.1C-70.5,44.3,-75.9,26.5,-76.8,8.9C-77.7,-8.7,-74.1,-26.1,-64.8,-39.4C-55.5,-52.7,-40.5,-61.9,-25.2,-69.6C-9.9,-77.3,5.7,-83.5,20.9,-80.6C36.1,-77.7,50.9,-65.7,44.6,-63.4Z" transform="translate(100 100)"/>
-    </svg>
-    <div class="hero-photo">
-      <img src="tara-headshot.jpeg" alt="Tara Bond">
-    </div>
-  </div>
-</main>
+<main id="main-content">
+<header class="hero">
+  <div class="kicker">Selected Work</div>
+  <h1>Portfolio</h1>
+  <p>A few projects that show range: interactive eLearning builds, business-critical training, and conceptual thinking. A significant portion of my work is confidential; available to share on request.</p>
+</header>
 
-<div class="testimonials reveal">
-  <svg class="t-bg-blob" id="t-blob-svg" aria-hidden="true" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <path id="t-blob-path" fill="#a67d51" opacity="0.3" d="M39.5,-56.3C51.3,-49.1,60.8,-37.6,65.6,-24.2C70.4,-10.8,70.5,4.5,65.9,18.1C61.3,31.7,52,43.6,40.1,52.4C28.2,61.2,13.7,66.9,-1.8,69.6C-17.3,72.3,-34.6,72,-47.8,64.1C-61,56.2,-70.1,40.7,-74.2,24.1C-78.3,7.5,-77.4,-10.2,-70.6,-24.8C-63.8,-39.4,-51.1,-50.9,-37.4,-58.1C-23.7,-65.3,-8.9,-68.2,3.9,-73.9C16.7,-79.6,27.7,-63.5,39.5,-56.3Z" transform="translate(100 100)"/>
-  </svg>
-  <div class="t-panel" id="t-panel" aria-live="polite">
-    <svg class="t-sparkle tl" aria-hidden="true" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M13 0 L15.5 10.5 L26 13 L15.5 15.5 L13 26 L10.5 15.5 L0 13 L10.5 10.5 Z" fill="#593232"/>
-    </svg>
-    <svg class="t-sparkle br" aria-hidden="true" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M13 0 L15.5 10.5 L26 13 L15.5 15.5 L13 26 L10.5 15.5 L0 13 L10.5 10.5 Z" fill="#593232"/>
-    </svg>
-    <div class="kicker-t">Kind Words</div>
-    <p class="t-quote" id="t-quote">"Her needs assessment work is the strongest I have seen. Her commitment to evidence results in learning experiences that are engaging, relevant, and effective. Tara's anchor will always be the learner."</p>
-    <div class="t-name-badge">
-      <span class="t-name" id="t-name">Chelsea Taylor
-        <span class="t-role" id="t-role">Director @ Visa</span>
-      </span>
+<!-- Results: outcomes from the programs I built and delivered -->
+<section class="results-wrap" aria-label="Results">
+  <div class="results-card">
+    <p class="results-kicker">Results</p>
+    <ul class="results-grid">
+      <li><span class="stat">98%</span><span class="stat-label">learner NPS</span><span class="stat-source">Redfin</span></li>
+      <li><span class="stat">100%</span><span class="stat-label">manager certification</span><span class="stat-source">Redfin</span></li>
+      <li><span class="stat">85%</span><span class="stat-label">of new reps productive within 30 days</span><span class="stat-source">Redfin</span></li>
+      <li><span class="stat">13%</span><span class="stat-label">less time for new hires to reach their first client engagement</span><span class="stat-source">Visa</span></li>
+    </ul>
+    <p class="results-note">Results from onboarding programs I built and delivered.</p>
+  </div>
+</section>
+
+<div class="cases">
+
+  <div class="case">
+    <div class="case-media" style="aspect-ratio: auto;">
+      <div style="position: relative; overflow: hidden; aspect-ratio: 1920/1080; width: 100%;"><iframe src="https://share.synthesia.io/embeds/videos/eafc4b91-360f-4825-b67d-930056ffbdf6" loading="lazy" title="Synthesia video player - Sales Manager Coaching Skills: Successful Discovery Calls" allowfullscreen allow="encrypted-media; fullscreen; microphone; screen-wake-lock;" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0; overflow:hidden;"></iframe></div>
     </div>
-    <div class="t-nav">
-      <button class="t-arrow" onclick="prevT()">← Previous</button>
-      <button class="t-arrow" onclick="nextT()">Next →</button>
+    <div class="case-body">
+      <div class="tag-row">
+        <span class="tag">Coaching Roleplay</span>
+        <span class="tag">Sales Manager Enablement</span>
+      </div>
+      <h2>Sales Manager Coaching Skills: Coaching to Successful Discovery Calls</h2>
+      <p class="goal">To model what great 1:1 coaching sounds like, not just describe it.</p>
+      <p class="desc">Part of a series of sales manager coaching roleplays built to show managers how to coach direct reports toward specific skills and behaviors. This video focuses on coaching a rep through a stronger discovery call, giving managers a concrete example of the coaching conversation itself rather than a checklist of tips.</p>
     </div>
   </div>
+
+  <div class="case">
+    <div class="case-media launch-card">
+      <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" class="noir-icon" aria-hidden="true">
+        <ellipse cx="26" cy="46" rx="16" ry="3" fill="#ffd7ab" opacity="0.3"/>
+        <path d="M18 44V22c0-4.4 3.6-8 8-8s8 3.6 8 8v22" stroke="#ffd7ab" stroke-width="2"/>
+        <circle cx="26" cy="12" r="7" stroke="#ffd7ab" stroke-width="2"/>
+        <path d="M17 10c0-3 3-6 9-6s9 3 9 5c-3-1-6 0-9 0s-6-1-9 1z" fill="#ffd7ab"/>
+      </svg>
+      <div style="font-size:1.3em; font-weight:800; letter-spacing:-0.3px;">The Human Lie Detector</div>
+      <a href="https://course-contest2026.ispring.com/app/preview/83e668cc-1f11-11f1-b0bc-fe335b225611" target="_blank" class="launch-btn">▶ Launch Course</a>
+    </div>
+    <div class="case-body">
+      <div class="tag-row">
+        <span class="tag">Interactive eLearning</span>
+        <span class="tag">iSpring Contest 2026</span>
+      </div>
+      <h2>The Human Lie Detector</h2>
+      <p class="goal">To build a fully interactive, story-driven eLearning experience from the ground up.</p>
+      <p class="desc">My submission for the iSpring Course Creation Contest 2026, a noir-styled, choice-driven course that teaches learners to spot deception cues through an immersive detective narrative rather than a slide deck. This is my most technically ambitious build, blending branching scenarios, interactivity, and storytelling into one cohesive learning experience.</p>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="case-media">
+      <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQBZOrB1QRXa53CJPYq36-AFSZYyQoOnvQQ6VZd3kjXOyjinZIkUI4AQLgjQHecU9zX5qkw6IjVJgZ9/pubembed?start=false&loop=false&delayms=3000" loading="lazy" title="Elite Advisor New Role Training slide deck" style="width:100%; height:100%; border:0;" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+    </div>
+    <div class="case-body">
+      <div class="tag-row">
+        <span class="tag">Training Deck</span>
+        <span class="tag">Role Transition</span>
+      </div>
+      <h2>Elite Advisor — New Role Training</h2>
+      <p class="goal">To equip a team for a newly merged role with confidence, not confusion.</p>
+      <p class="desc">Created for a group of sales and support team members, this training introduced a brand-new role that combined the functions and skills of two previously separate positions. The challenge wasn't just teaching new tasks. It was helping people reframe their whole sense of the job.</p>
+      <details class="story">
+        <summary>Read the story</summary>
+        <div class="story-body">
+          <h3>The problem</h3>
+          <p>High-end buyers who requested a first home showing got templated confirmations and often didn't speak to a person until the showing itself. More than half of those first showings were canceled.</p>
+          <h3>What I did</h3>
+          <p>I built the training for a pilot team in a brand-new role, the Elite Advisor, which combined the work of two separate positions: showing coordinator and sales advisor. I delivered it live and in person to the pilot group.</p>
+          <h3>How I designed it</h3>
+          <ul>
+            <li><strong>Identity before tasks.</strong> The role is built around five named strengths (Tour Titan, Master of Communication, Elevated Experience Orchestrator, Connoisseur, and Seamless Customer Concierge), so people learn who they're becoming before what they're doing.</li>
+            <li><strong>Discovery before instruction.</strong> Early on, I ask the group what sets the Ritz-Carlton apart from the Holiday Inn when both offer a room and a bed. They work out what "white glove" means for themselves.</li>
+            <li><strong>Practice, not just explanation.</strong> Participants write their own opening and say it aloud, then role-play rapport-building with customer scripts, then practice writing the handoff to the agent from templates.</li>
+            <li><strong>Clear contrast with the old jobs.</strong> Two "what's different" sections show showing coordinators and sales advisors exactly what changes for each. For example, the new role cross-sells but doesn't schedule.</li>
+            <li><strong>The real workflow, in the real tools.</strong> A step-by-step walkthrough runs from the queue through pre-contact review, outreach, booking, and warm handoff, with a hands-on demo and practice.</li>
+          </ul>
+          <h3>The result</h3>
+          <p>I delivered the training live to the pilot group. It shows how I turn a role change into training that starts with identity and ends with practice in the real tools.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="case-media doc-embed">
+      <iframe src="https://docs.google.com/document/d/e/2PACX-1vSUKPyDu_NK3P7Dm5Lgy4vUD2anvn_yyXw9ZTjf7QkxP6skkN8DrBOudHKpdgfvWbguC5Hidsb0RZ1D/pub?embedded=true" loading="lazy" title="New Rep Sales Training Proposal document" style="width:100%; height:100%; border:0;"></iframe>
+    </div>
+    <div class="case-body">
+      <div class="tag-row">
+        <span class="tag">Training Proposal</span>
+        <span class="tag">Sales Onboarding</span>
+      </div>
+      <h2>New Rep Sales Training Proposal</h2>
+      <p class="goal">To pitch a structured onboarding path for new sales reps, not just a syllabus.</p>
+      <p class="desc">A proposal outlining a training approach for ramping new sales representatives, covering what they need to learn, in what order, and why, with an eye toward getting reps to full productivity faster and with more confidence.</p>
+      <details class="story">
+        <summary>Read the story</summary>
+        <div class="story-body">
+          <h3>The problem</h3>
+          <p>A national B2B sales organization needed new reps to ramp faster and get core skills in place early, without hurting performance or job satisfaction. (Confidential: the organization is kept anonymous.)</p>
+          <h3>What I did</h3>
+          <p>I wrote the plan I would use to build a national sales enablement onboarding and strategy: a structured 90-day path with clear checkpoints, owners, and goals.</p>
+          <h3>How I designed it</h3>
+          <ul>
+            <li><strong>A simple frame.</strong> The program is organized around four Cs: Compliance, Clarification, Culture, and Connection. That keeps what reps learn clear and the sequence easy for managers to follow.</li>
+            <li><strong>Mostly on the job.</strong> The first two weeks split roughly half instructor-led and half self-paced, with e-learning, call listening, and CRM sandbox practice. After that, learning moves into the role and support tapers over time.</li>
+            <li><strong>Support from three people.</strong> Each rep works with a manager, a peer mentor, and a trainer through weekly 1:1s, coaching sessions, and office hours. Shadowing runs both ways: reps shadow peers, then peers shadow the rep.</li>
+            <li><strong>Three stages with clear targets.</strong> Absorb (30 days), Practice (60 days, at 75% of target), and Internalize (90 days, meeting conversion goals).</li>
+            <li><strong>Visible progress.</strong> Progress reports at Week 1, Week 2, and Days 30, 60, and 90 show managers problems early.</li>
+          </ul>
+          <h3>The result</h3>
+          <p>This is a proposal, so there are no results to report. It shows how I plan and structure enablement at scale: how to build it, how to support it, and how to measure it.</p>
+        </div>
+      </details>
+      <!-- Mobile-friendly way to read the full document without scrolling inside the small frame -->
+      <a href="https://docs.google.com/document/d/e/2PACX-1vSUKPyDu_NK3P7Dm5Lgy4vUD2anvn_yyXw9ZTjf7QkxP6skkN8DrBOudHKpdgfvWbguC5Hidsb0RZ1D/pub" target="_blank" rel="noopener" class="view-link">Open the full proposal →</a>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="case-media newsletter-media">
+      <img src="newsletter-cover.png" alt="Development Digest newsletter cover" loading="lazy" decoding="async">
+    </div>
+    <div class="case-body">
+      <div class="tag-row">
+        <span class="tag">Editorial Design</span>
+        <span class="tag">Quarterly Publication</span>
+      </div>
+      <h2>Development Digest — Training Team Newsletter</h2>
+      <p class="goal">To keep a team of learning professionals sharp on the field's own best practices.</p>
+      <p class="desc">The first issue of a training and development newsletter, covering the research behind experiential learning, how to make passive learning more effective when hands-on isn't an option, and real examples of multimodal learning already in use across the org's training programs.</p>
+      <a href="newsletter.pdf" target="_blank" class="view-link">Read the full newsletter →</a>
+    </div>
+  </div>
+
 </div>
 
-<div class="connect-footer reveal">
-  <h2>Let's Connect</h2>
+</main>
+
+<div class="connect-footer">
+  <h3>Let's Connect</h3>
   <div class="connect-links">
     <a href="https://www.linkedin.com/in/taraneh-tara-bond" target="_blank" class="connect-link">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
@@ -576,114 +746,10 @@
 </footer>
 
 <script>
-  const testimonials = [
-    {
-      quote: "Her needs assessment work is the strongest I have seen. Her commitment to evidence results in learning experiences that are engaging, relevant, and effective. Tara's anchor will always be the learner.",
-      name: "Chelsea Taylor",
-      role: "Director @ Visa",
-      blobColor: "#a67d51",
-      blobOpacity: 0.3,
-      blobSize: 260,
-      blobTop: -20,
-      blobLeft: -40,
-      blobRotate: 0,
-      blobPath: "M39.5,-56.3C51.3,-49.1,60.8,-37.6,65.6,-24.2C70.4,-10.8,70.5,4.5,65.9,18.1C61.3,31.7,52,43.6,40.1,52.4C28.2,61.2,13.7,66.9,-1.8,69.6C-17.3,72.3,-34.6,72,-47.8,64.1C-61,56.2,-70.1,40.7,-74.2,24.1C-78.3,7.5,-77.4,-10.2,-70.6,-24.8C-63.8,-39.4,-51.1,-50.9,-37.4,-58.1C-23.7,-65.3,-8.9,-68.2,3.9,-73.9C16.7,-79.6,27.7,-63.5,39.5,-56.3Z"
-    },
-    {
-      quote: "She does not just talk about innovation; she builds it. Whether leveraging tools like Perplexity to sharpen learning objectives or building persona chatbots to scale onboarding, she constantly finds pragmatic ways to modernize how we deliver enablement.",
-      name: "Nathan D McClure",
-      role: "Technical Enablement Architect, AI Strategy @ Visa",
-      blobColor: "#ffd7ab",
-      blobOpacity: 0.55,
-      blobSize: 320,
-      blobTop: -50,
-      blobLeft: -70,
-      blobRotate: 25,
-      blobPath: "M44.6,-63.4C56.9,-54.7,64.9,-39.5,68.4,-23.7C71.9,-7.9,70.9,8.5,64.6,22.4C58.3,36.3,46.7,47.7,33.1,56.8C19.5,65.9,3.9,72.7,-12.8,73.2C-29.5,73.7,-47.3,67.9,-58.9,56.1C-70.5,44.3,-75.9,26.5,-76.8,8.9C-77.7,-8.7,-74.1,-26.1,-64.8,-39.4C-55.5,-52.7,-40.5,-61.9,-25.2,-69.6C-9.9,-77.3,5.7,-83.5,20.9,-80.6C36.1,-77.7,50.9,-65.7,44.6,-63.4Z"
-    },
-    {
-      quote: "She has a unique ability to see situations from multiple perspectives, whether partnering with stakeholders or supporting learners, which allows her to create solutions that truly resonate.",
-      name: "Lani Fissore",
-      role: "Onboarding Architect (former manager @ Redfin)",
-      blobColor: "#593232",
-      blobOpacity: 0.12,
-      blobSize: 220,
-      blobTop: -10,
-      blobLeft: -30,
-      blobRotate: -15,
-      blobPath: "M48.2,-58.8C61.4,-49.3,70.2,-33.6,73.1,-16.9C76,-0.2,73,17.5,64.4,31.9C55.8,46.3,41.6,57.4,25.7,64.1C9.8,70.8,-7.8,73.1,-24.1,68.8C-40.4,64.5,-55.4,53.6,-64.8,39C-74.2,24.4,-78,6.1,-75.2,-11.1C-72.4,-28.3,-63,-44.4,-49.7,-53.9C-36.4,-63.4,-19.2,-66.3,-1.2,-64.6C16.8,-62.9,35,-68.3,48.2,-58.8Z"
-    },
-    {
-      quote: "She's direct, learner-centric, and deeply committed to creating inclusive, meaningful experiences for others. She's not afraid to challenge perspectives, including her own.",
-      name: "Amber Laidman",
-      role: "Learning Experience Architect @ Visa",
-      blobColor: "#a67d51",
-      blobOpacity: 0.28,
-      blobSize: 300,
-      blobTop: -60,
-      blobLeft: -20,
-      blobRotate: 40,
-      blobPath: "M42.1,-54.2C53.7,-47.6,61.6,-34.4,65.9,-19.9C70.2,-5.4,70.9,10.4,65.6,24.3C60.3,38.2,49,50.2,35.4,58.1C21.8,66,7.9,69.8,-6.6,69.4C-21.1,69,-42.2,64.4,-56.6,53.1C-71,41.8,-78.7,23.8,-79.4,5.3C-80.1,-13.2,-73.8,-32.2,-61.6,-45.3C-49.4,-58.4,-31.3,-65.6,-13.6,-67.1C4.1,-68.6,20.5,-64.4,42.1,-54.2Z"
-    },
-    {
-      quote: "Taraneh is one of the best trainers I've had. She cares deeply that you learn and that you succeed.",
-      name: "Christine Teixeira Pinto",
-      role: "Sales Professional (trained @ Redfin)",
-      blobColor: "#ffd7ab",
-      blobOpacity: 0.6,
-      blobSize: 240,
-      blobTop: -30,
-      blobLeft: -50,
-      blobRotate: -30,
-      blobPath: "M39.9,-50.6C50.4,-42.3,57,-29.2,61.4,-14.8C65.8,-0.4,68,14.3,63.3,26.7C58.6,39.1,47,49.2,33.8,56.5C20.6,63.8,5.8,68.3,-9.6,68.9C-25,69.5,-41,66.2,-52.7,56.7C-64.4,47.2,-71.8,31.5,-74.5,14.9C-77.2,-1.7,-75.2,-19.2,-67.1,-33.2C-59,-47.2,-44.8,-57.7,-30.2,-64.9C-15.6,-72.1,-0.6,-76,12.1,-73.1C24.8,-70.2,29.4,-58.9,39.9,-50.6Z"
-    }
-  ];
-
-  let tIndex = 0;
-  let tTimer;
-
-  function renderT() {
-    const t = testimonials[tIndex];
-    document.getElementById('t-quote').textContent = '"' + t.quote + '"';
-    document.getElementById('t-name').firstChild.textContent = t.name + ' ';
-    document.getElementById('t-role').textContent = t.role;
-
-    const blobSvg = document.getElementById('t-blob-svg');
-    blobSvg.style.width = t.blobSize + 'px';
-    blobSvg.style.height = t.blobSize + 'px';
-    blobSvg.style.top = t.blobTop + 'px';
-    blobSvg.style.left = t.blobLeft + 'px';
-    blobSvg.style.transform = 'rotate(' + t.blobRotate + 'deg)';
-
-    const blobPath = document.getElementById('t-blob-path');
-    blobPath.setAttribute('d', t.blobPath);
-    blobPath.setAttribute('fill', t.blobColor);
-    blobPath.setAttribute('opacity', t.blobOpacity);
-  }
-
-  function nextT() { tIndex = (tIndex + 1) % testimonials.length; renderT(); resetTimer(); }
-  function prevT() { tIndex = (tIndex - 1 + testimonials.length) % testimonials.length; renderT(); resetTimer(); }
-  function resetTimer() {
-    clearInterval(tTimer);
-    tTimer = setInterval(nextT, 7000);
-  }
-
-  renderT();
-  resetTimer();
-
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
   console.log('%cHey, curious minds welcome.', 'color:#593232; font-size:16px; font-weight:bold;');
   console.log('%cThis whole site is hand-coded HTML, CSS, and JS — no framework, no build step. View source, poke around, or say hi: bondtaraneh@gmail.com', 'color:#8a6339; font-size:13px;');
 </script>
 
+<script src="cursor.js" defer></script>
 </body>
 </html>
