@@ -441,6 +441,49 @@
   .skip-link:focus {
     top: 12px;
   }
+
+  /* Education lines (moved out of inline styles so phones can resize them) */
+  .edu { font-size: 0.88em; color: var(--muted); margin: 0 0 4px; }
+  .edu.last { margin-bottom: 28px; }
+
+  /* ============================================================
+     MOBILE REFINEMENTS
+     Desktop layout is unchanged.
+     ============================================================ */
+
+  /* Small laptops / tablets in landscape: let the headline wrap
+     so it can't run underneath the headshot */
+  @media (min-width: 781px) and (max-width: 1040px) {
+    main.hero h1 { font-size: 3em; }
+    main.hero h1 .nowrap-line { white-space: normal; }
+  }
+
+  /* Phones */
+  @media (max-width: 640px) {
+    /* Nav links: at least 44px tall to tap */
+    nav .links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding-bottom: 0;
+    }
+    nav .links a.active::after { bottom: 12px; }
+
+    /* Education lines: 16px so no zooming is needed */
+    .edu { font-size: 1em; }
+
+    /* Testimonial Previous / Next: 44px tap targets */
+    .t-arrow { min-height: 44px; padding: 0 12px; }
+
+    /* Footer pills: 44px tall */
+    .connect-link { min-height: 44px; }
+  }
+
+  /* Small phones: stack the two hero buttons full width */
+  @media (max-width: 480px) {
+    main.hero .cta-row { flex-direction: column; }
+    .btn { text-align: center; }
+  }
 </style>
 </head>
 <body>
@@ -472,8 +515,8 @@
       <span class="cred-pill">Gallup Strengths Coach</span>
       <span class="cred-pill">GenAI Ambassador</span>
     </div>
-    <p class="stagger-4" style="font-size: 0.88em; color: var(--muted); margin: 0 0 4px;">M.S., Organizational Leadership, Colorado State University (in progress)</p>
-    <p class="stagger-4" style="font-size: 0.88em; color: var(--muted); margin: 0 0 28px;">B.A., Psychology, Summa Cum Laude, SNHU</p>
+    <p class="stagger-4 edu">M.S., Organizational Leadership, Colorado State University (in progress)</p>
+    <p class="stagger-4 edu last">B.A., Psychology, Summa Cum Laude, SNHU</p>
     <div class="cta-row stagger-5">
       <a href="portfolio.html" class="btn primary">View My Work</a>
       <a href="about.html" class="btn secondary">Take a Course About Me →</a>
