@@ -1,0 +1,532 @@
+/* portfolio.css: styles for portfolio.html (the colors and fonts are defined as variables in :root below) */
+
+:root {
+  --maroon: #593232;
+  --tan: #8a6339;
+  --cream: #f7f2ee;
+  --paper: #ffffff; /* same page background as Home and About */
+  --blush: #ffd7ab;
+  --text: #2b2320;
+  --muted: #6f5e50;
+  --border: #eee3d8;
+}
+* { box-sizing: border-box; }
+html { position: relative; background: var(--paper); overflow-x: hidden; overflow-x: clip; }
+body {
+  margin: 0;
+  font-family: 'Schibsted Grotesk', Arial, sans-serif;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  overflow-x: clip; /* clip (unlike hidden) keeps the sticky nav working */
+}
+a { text-decoration: none; color: inherit; }
+
+::selection {
+  background: var(--blush);
+  color: var(--maroon);
+}
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--paper); }
+::-webkit-scrollbar-thumb { background: var(--tan); border-radius: 10px; border: 2px solid var(--paper); }
+* { scrollbar-color: var(--tan) var(--paper); scrollbar-width: thin; }
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.bg-blob { position: absolute; z-index: -1; pointer-events: none; }
+.blob-1 { top: -30px; right: -90px; width: 360px; }
+.blob-2 { bottom: 40px; left: -100px; width: 340px; }
+@media (max-width: 640px) {
+  .blob-1 { width: 200px; right: -70px; }
+  .blob-2 { width: 190px; left: -70px; }
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 48px;
+  /* Sticky nav with a soft frosted-glass look */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(89, 50, 50, 0.08);
+}
+nav .name {
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--maroon);
+}
+nav .links { display: flex; gap: 40px; }
+nav .links a {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 4px;
+  position: relative;
+}
+nav .links a.active { color: var(--maroon); font-weight: 600; }
+nav .links a.active::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 2px;
+  background: var(--tan);
+  border-radius: 2px;
+}
+nav .links a:hover { color: var(--maroon); }
+
+@media (max-width: 640px) {
+  nav { padding: 24px 24px; flex-direction: column; gap: 18px; align-items: flex-start; }
+}
+
+header.hero {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 32px 70px;
+}
+.kicker {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--tan);
+  margin-bottom: 18px;
+}
+header.hero h1 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 3.6em;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  color: var(--maroon);
+  margin: 0 0 20px;
+}
+header.hero p {
+  font-size: 1.15em;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 540px;
+  margin: 0;
+}
+
+.cases {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 32px 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* Each case study is a white card floating on the white page (hairline edge + soft shadow) */
+.case {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px 24px 32px;
+  border: 1px solid rgba(89, 50, 50, 0.08);
+  box-shadow: 0 18px 44px rgba(43, 35, 32, 0.10), 0 2px 8px rgba(43, 35, 32, 0.06);
+}
+.case-media {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 16px;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.case-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.case-media .placeholder-label {
+  font-size: 0.85em;
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+/* Embedded Google Doc: fixed height, scrolls inside the frame */
+.case-media.doc-embed { aspect-ratio: auto; height: 700px; }
+
+/* Newsletter cover image */
+.case-media.newsletter-media { aspect-ratio: auto; height: 500px; background: #1a2a5e; }
+.case-media.newsletter-media img { width: 100%; height: 100%; object-fit: contain; }
+
+.case-body .tag-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.case-body .tag {
+  background: var(--cream);
+  color: var(--maroon);
+  font-size: 0.8em;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+.case-body h2 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 2em;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+  color: var(--maroon);
+  margin: 0 0 6px;
+}
+.case-body p.goal {
+  font-style: italic;
+  color: var(--tan);
+  font-size: 1.05em;
+  margin: 0 0 16px;
+}
+.case-body p.desc {
+  font-size: 1.05em;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 0 0 18px;
+  max-width: 600px;
+}
+.case-body a.view-link {
+  font-weight: 700;
+  color: var(--maroon);
+  font-size: 0.98em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.case-body a.view-link:hover { color: var(--tan); }
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85em;
+  padding: 24px 20px 40px;
+}
+footer a { font-weight: 600; color: var(--tan); }
+.launch-card {
+  position: relative;
+  background: radial-gradient(circle at 50% 30%, #6b3f3f, #2a1717 75%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  overflow: hidden;
+}
+.launch-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    100deg,
+    rgba(0,0,0,0.25) 0px,
+    rgba(0,0,0,0.25) 14px,
+    transparent 14px,
+    transparent 34px
+  );
+  pointer-events: none;
+}
+.launch-card > * { position: relative; z-index: 1; }
+.launch-card .noir-icon { opacity: 0.9; }
+.launch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--blush);
+  color: var(--maroon);
+  font-weight: 700;
+  font-size: 0.95em;
+  padding: 12px 26px;
+  border-radius: 30px;
+  transition: opacity 0.15s, transform 0.15s;
+}
+.launch-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+.connect-footer {
+  text-align: center;
+  padding: 50px 20px 20px;
+}
+.connect-footer h3 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  color: var(--tan);
+  font-weight: 700;
+  margin: 0 0 18px;
+}
+.connect-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.connect-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1.5px solid var(--border);
+  color: var(--maroon);
+  font-size: 0.92em;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 24px;
+  transition: opacity 0.15s, transform 0.15s;
+}
+.connect-link:hover { opacity: 0.85; transform: translateY(-1px); }
+.connect-link svg { flex-shrink: 0; }
+
+footer.credit {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85em;
+  padding: 24px 20px 40px;
+}
+footer.credit a { font-weight: 600; color: var(--tan); }
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 12px;
+  background: var(--maroon);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  z-index: 10000;
+  font-family: 'Schibsted Grotesk', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 12px;
+}
+
+/* ============================================================
+   MOBILE REFINEMENTS (phones, 640px and under)
+   Desktop and tablet layouts above are unchanged.
+   ============================================================ */
+@media (max-width: 640px) {
+
+  /* Compact one-row nav so the sticky bar stays slim on phones
+     (the logo stays; the written name is hidden to make room) */
+  nav { padding: 8px 20px; flex-direction: row; align-items: center; gap: 12px; }
+  nav .name { display: none; }
+  nav .links { gap: 20px; }
+
+  /* Nav links: at least 44px tall to tap */
+  nav .links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding-bottom: 0;
+  }
+  nav .links a.active::after { bottom: 12px; }
+
+  /* Tighter page padding and spacing */
+  header.hero { padding: 24px 24px 40px; }
+  header.hero h1 { font-size: clamp(2.6em, 12vw, 3.6em); }
+  .cases { padding: 0 16px 80px; gap: 32px; }
+  .case { padding: 14px 14px 24px; gap: 20px; border-radius: 16px; }
+  .case-body h2 { font-size: 1.6em; }
+
+  /* The Human Lie Detector card: let it grow to fit its content
+     instead of being squeezed into a 16:9 box */
+  .launch-card { aspect-ratio: auto; padding: 32px 20px; }
+  .launch-btn { min-height: 44px; }
+
+  /* Google Doc embed: shorter so it doesn't take over the screen */
+  .case-media.doc-embed { height: 480px; }
+
+  /* Newsletter cover: show the whole image at the screen's width */
+  .case-media.newsletter-media { height: auto; }
+  .case-media.newsletter-media img { height: auto; }
+
+  /* Text links and footer pills: 44px tap targets */
+  .case-body a.view-link { min-height: 44px; }
+  .connect-link { min-height: 44px; }
+}
+
+/* ============================================================
+   RESULTS CARD (proof points, sits above the case studies)
+   ============================================================ */
+.results-wrap { max-width: 900px; margin: 0 auto; padding: 0 32px 48px; }
+.results-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 36px 32px 32px;
+  border: 1px solid rgba(89, 50, 50, 0.08);
+  box-shadow: 0 18px 44px rgba(43, 35, 32, 0.10), 0 2px 8px rgba(43, 35, 32, 0.06);
+}
+.results-kicker {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--tan);
+  margin: 0 0 28px;
+  text-align: center;
+}
+.results-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: start;
+}
+.results-grid li { padding: 4px 18px; text-align: center; }
+/* thin hairlines between the stats */
+.results-grid li + li { border-left: 1px solid rgba(89, 50, 50, 0.15); }
+.stat {
+  display: block;
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 3em;
+  line-height: 1;
+  color: var(--maroon);
+  margin-bottom: 10px;
+}
+.stat-label { display: block; font-size: 0.95em; line-height: 1.4; color: var(--muted); }
+.stat-source {
+  display: block;
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--tan);
+}
+.results-note {
+  margin: 28px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(89, 50, 50, 0.12);
+  text-align: center;
+  font-size: 0.95em;
+  color: var(--muted);
+}
+/* Tablets and phones: 2 x 2 grid so the labels never get squeezed */
+@media (max-width: 760px) {
+  .results-grid { grid-template-columns: repeat(2, 1fr); }
+  .results-grid li { padding: 20px 12px; }
+  .results-grid li + li { border-left: none; }
+  .results-grid li:nth-child(even) { border-left: 1px solid rgba(89, 50, 50, 0.15); }
+  .results-grid li:nth-child(n+3) { border-top: 1px solid rgba(89, 50, 50, 0.15); }
+}
+@media (max-width: 640px) {
+  .results-wrap { padding: 0 16px 32px; }
+  .results-card { padding: 28px 16px 24px; border-radius: 16px; }
+  .stat { font-size: 2.5em; }
+}
+
+/* ============================================================
+   "READ THE STORY" TOGGLE (expandable case-study detail)
+   Uses native <details>: works with tap, click and keyboard, no JS.
+   ============================================================ */
+.story { margin-top: 18px; }
+.story summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;          /* comfortable tap target */
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1.5px solid var(--maroon);
+  color: var(--maroon);
+  font-weight: 700;
+  font-size: 0.95em;
+}
+.story summary::-webkit-details-marker { display: none; }
+.story summary::after { content: "+"; font-size: 1.25em; line-height: 1; }
+.story[open] summary::after { content: "\2212"; }
+.story summary:hover { background: var(--blush); }
+.story summary:focus-visible { outline: 3px solid var(--tan); outline-offset: 3px; }
+.story-body { padding-top: 22px; }
+.story-body h3 {
+  margin: 22px 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--tan);
+}
+.story-body h3:first-child { margin-top: 0; }
+.story-body p, .story-body li { font-size: 1em; line-height: 1.7; color: var(--text); }
+.story-body p { margin: 0; }
+.story-body ul { margin: 0; padding-left: 20px; }
+.story-body li { margin-bottom: 6px; }
+
+/* ============================================================
+   NUMBERED CASE STUDIES WITH HAIRLINES
+   The numbers are generated automatically (01, 02, 03...), so if you
+   add or reorder a case study you don't have to renumber anything.
+   ============================================================ */
+.cases { counter-reset: case; }
+.case { counter-increment: case; }
+.case-body::before {
+  content: counter(case, decimal-leading-zero);
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--tan);
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid rgba(89, 50, 50, 0.12);
+}
+.case-body a.view-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* ============================================================
+   MAROON FOOTER BAND
+   ============================================================ */
+.connect-footer {
+  background: var(--maroon);
+  padding: 72px 24px 40px;
+}
+.connect-footer h3 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 2.2em;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: -0.3px;
+  color: var(--cream);
+  margin: 0 0 24px;
+}
+.connect-link { background: var(--cream); border: none; color: var(--maroon); }
+footer.credit {
+  background: var(--maroon);
+  color: #e0cfc0;
+  padding: 0 20px 40px;
+}
+@media (max-width: 640px) {
+  .connect-footer { padding: 56px 20px 32px; }
+  .connect-footer h3 { font-size: 1.8em; }
+}
