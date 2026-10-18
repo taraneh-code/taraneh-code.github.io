@@ -8,13 +8,16 @@
 <title>Tara Bond</title>
 <meta property="og:title" content="Tara Bond — Learning & Development Leader">
 <meta property="og:description" content="Portfolio site for Tara Bond, an L&D leader specializing in training management, enablement, and instructional design. Built from scratch with HTML and CSS.">
-<meta property="og:image" content="https://taraneh-code.github.io/tara-headshot.jpeg">
+<meta property="og:image" content="https://taraneh-code.github.io/share-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tara Bond: I turn complexity into learning that sticks.">
 <meta property="og:url" content="https://taraneh-code.github.io/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Tara Bond — Learning & Development Leader">
 <meta name="twitter:description" content="Portfolio site for Tara Bond, an L&D leader specializing in training management, enablement, and instructional design.">
-<meta name="twitter:image" content="https://taraneh-code.github.io/tara-headshot.jpeg">
+<meta name="twitter:image" content="https://taraneh-code.github.io/share-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
@@ -40,6 +43,7 @@
     color: var(--text);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    overflow-x: clip; /* clip (unlike hidden) keeps the sticky nav working */
   }
 
   a { text-decoration: none; color: inherit; }
@@ -94,7 +98,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 32px 48px;
+    padding: 20px 48px;
+    /* Sticky nav with a soft frosted-glass look */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.82);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(89, 50, 50, 0.08);
   }
   nav .name {
     font-family: 'Schibsted Grotesk', Arial, sans-serif;
@@ -138,7 +150,7 @@
 
   /* Hero */
   main.hero {
-    min-height: calc(100vh - 96px);
+    min-height: calc(100vh - 77px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -198,7 +210,13 @@
     color: var(--maroon);
     margin: 0 0 26px;
     white-space: normal;
+    text-wrap: balance; /* evens out line lengths so no single word is stranded */
   }
+  /* "learning that sticks." always sits on its own line. If the first line
+     is too long for a small screen, it balances into two even lines
+     ("I turn / complexity into") instead of stranding the word "into". */
+  main.hero h1 .nowrap-line { display: block; text-wrap: balance; }
+  main.hero h1 br { display: none; }
   main.hero h1 span {
     color: var(--tan);
   }
@@ -460,6 +478,12 @@
 
   /* Phones */
   @media (max-width: 640px) {
+    /* Compact one-row nav so the sticky bar stays slim on phones
+       (the logo stays; the written name is hidden to make room) */
+    nav { padding: 8px 20px; flex-direction: row; align-items: center; gap: 12px; }
+    nav .name { display: none; }
+    nav .links { gap: 20px; }
+
     /* Nav links: at least 44px tall to tap */
     nav .links a {
       display: inline-flex;
@@ -483,6 +507,33 @@
   @media (max-width: 480px) {
     main.hero .cta-row { flex-direction: column; }
     .btn { text-align: center; }
+  }
+
+  /* ============================================================
+     MAROON FOOTER BAND
+     ============================================================ */
+  .connect-footer {
+    background: var(--maroon);
+    padding: 72px 24px 40px;
+  }
+  .connect-footer h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 2.2em;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: -0.3px;
+    color: var(--cream);
+    margin: 0 0 24px;
+  }
+  .connect-link { background: var(--cream); color: var(--maroon); }
+  footer.credit {
+    background: var(--maroon);
+    color: #e0cfc0;
+    padding: 0 20px 40px;
+  }
+  @media (max-width: 640px) {
+    .connect-footer { padding: 56px 20px 32px; }
+    .connect-footer h2 { font-size: 1.8em; }
   }
 </style>
 </head>
@@ -557,7 +608,7 @@
   </div>
 </div>
 
-<div class="connect-footer reveal">
+<div class="connect-footer">
   <h2>Let's Connect</h2>
   <div class="connect-links">
     <a href="https://www.linkedin.com/in/taraneh-tara-bond" target="_blank" class="connect-link">
@@ -685,5 +736,6 @@
   console.log('%cThis whole site is hand-coded HTML, CSS, and JS — no framework, no build step. View source, poke around, or say hi: bondtaraneh@gmail.com', 'color:#8a6339; font-size:13px;');
 </script>
 
+<script src="cursor.js" defer></script>
 </body>
 </html>
