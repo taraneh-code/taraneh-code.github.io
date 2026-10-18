@@ -8,13 +8,16 @@
 <title>All About Tara Bond</title>
 <meta property="og:title" content="TB-101: All About Tara Bond">
 <meta property="og:description" content="An interactive eLearning course about the L&D leader who built this page — learning objectives, a knowledge check, and a certificate of completion included.">
-<meta property="og:image" content="https://taraneh-code.github.io/tara-headshot.jpeg">
+<meta property="og:image" content="https://taraneh-code.github.io/share-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tara Bond: I turn complexity into learning that sticks.">
 <meta property="og:url" content="https://taraneh-code.github.io/about.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="TB-101: All About Tara Bond">
 <meta name="twitter:description" content="An interactive eLearning course about the L&D leader who built this page.">
-<meta name="twitter:image" content="https://taraneh-code.github.io/tara-headshot.jpeg">
+<meta name="twitter:image" content="https://taraneh-code.github.io/share-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -38,6 +41,7 @@
     color: var(--text);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    overflow-x: clip; /* clip (unlike hidden) keeps the sticky nav working */
   }
   a { text-decoration: none; color: inherit; }
 
@@ -65,7 +69,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 32px 48px;
+    padding: 20px 48px;
+    /* Sticky nav with a soft frosted-glass look */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.82);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(89, 50, 50, 0.08);
   }
   nav .name {
     font-weight: 400;
@@ -177,7 +189,8 @@
     .step .step-label { display: none; }
   }
 
-  .panel { display: none; padding-top: 64px; animation: fadeIn 0.4s ease; }
+  /* scroll-margin-top keeps the sticky nav from covering the heading when a module scrolls into view */
+  .panel { display: none; padding-top: 64px; scroll-margin-top: 90px; animation: fadeIn 0.4s ease; }
   .panel.active { display: block; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(8px);} to {opacity:1; transform: translateY(0);} }
 
@@ -438,8 +451,14 @@
      ============================================================ */
   @media (max-width: 640px) {
 
+    /* Compact one-row nav so the sticky bar stays slim on phones
+       (the logo stays; the written name is hidden to make room) */
+    nav { padding: 8px 20px; flex-direction: row; align-items: center; gap: 12px; }
+    nav .name { display: none; }
+    nav .links { gap: 20px; }
+    .panel { scroll-margin-top: 70px; }
+
     /* Nav links: bigger tap area (at least 44px tall) */
-    nav .links { gap: 28px; }
     nav .links a {
       display: inline-flex;
       align-items: center;
@@ -475,6 +494,33 @@
 
     /* Footer pill links: 44px tall */
     .connect-link { min-height: 44px; }
+  }
+
+  /* ============================================================
+     MAROON FOOTER BAND
+     ============================================================ */
+  .connect-footer {
+    background: var(--maroon);
+    padding: 72px 24px 40px;
+  }
+  .connect-footer h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 2.2em;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: -0.3px;
+    color: var(--cream);
+    margin: 0 0 24px;
+  }
+  .connect-link { background: var(--cream); color: var(--maroon); }
+  footer.credit {
+    background: var(--maroon);
+    color: #e0cfc0;
+    padding: 0 20px 40px;
+  }
+  @media (max-width: 640px) {
+    .connect-footer { padding: 56px 20px 32px; }
+    .connect-footer h3 { font-size: 1.8em; }
   }
 </style>
 </head>
@@ -691,5 +737,6 @@
 </script>
 
 </div>
+<script src="cursor.js" defer></script>
 </body>
 </html>
