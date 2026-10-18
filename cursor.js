@@ -60,10 +60,13 @@
     document.documentElement.classList.remove('cc-on');
   });
 
-  // The ring eases toward the mouse each frame
+  // The ring eases toward the mouse each frame.
+  // FOLLOW is how snappy it is: 1 = locked to the dot (no lag),
+  // 0.7 = very little lag, 0.18 = long, floaty trail. Change it to taste.
+  var FOLLOW = 0.7;
   function follow() {
-    rx += (x - rx) * 0.18;
-    ry += (y - ry) * 0.18;
+    rx += (x - rx) * FOLLOW;
+    ry += (y - ry) * FOLLOW;
     ring.style.transform = 'translate3d(' + rx + 'px,' + ry + 'px,0)';
     requestAnimationFrame(follow);
   }
